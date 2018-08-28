@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusOptimizeImagesPlugin\Provider\OptimizationResult;
+namespace Loevgaard\SyliusOptimizeImagesPlugin\OptimizationResult;
 
 class OptimizationResult implements OptimizationResultInterface
 {
@@ -33,7 +33,7 @@ class OptimizationResult implements OptimizationResultInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getOriginalFile(): \SplFileInfo
     {
@@ -41,7 +41,7 @@ class OptimizationResult implements OptimizationResultInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getOptimizedFile(): \SplFileInfo
     {
@@ -49,7 +49,7 @@ class OptimizationResult implements OptimizationResultInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getSavedBytes(): int
     {
@@ -57,7 +57,7 @@ class OptimizationResult implements OptimizationResultInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getSavedPercent(): int
     {
@@ -65,24 +65,24 @@ class OptimizationResult implements OptimizationResultInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getOriginalFileSize(): int
     {
-        if(!$this->originalFileSize) {
-            $this->originalFileSize = filesize($this->getOriginalFile()->getPathname());
+        if (!$this->originalFileSize) {
+            $this->originalFileSize = (int) filesize($this->getOriginalFile()->getPathname());
         }
 
         return $this->originalFileSize;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getOptimizedFileSize(): int
     {
-        if(!$this->optimizedFileSize) {
-            $this->optimizedFileSize = filesize($this->getOptimizedFile()->getPathname());
+        if (!$this->optimizedFileSize) {
+            $this->optimizedFileSize = (int) filesize($this->getOptimizedFile()->getPathname());
         }
 
         return $this->optimizedFileSize;

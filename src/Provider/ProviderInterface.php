@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Loevgaard\SyliusOptimizeImagesPlugin\Provider;
 
-use Loevgaard\SyliusOptimizeImagesPlugin\Provider\OptimizationResult\OptimizationResultInterface;
+use Loevgaard\SyliusOptimizeImagesPlugin\OptimizationResult\OptimizationResultInterface;
 
 interface ProviderInterface
 {

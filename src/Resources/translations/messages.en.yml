@@ -1,0 +1,7 @@
+loevgaard_sylius_optimize_images:
+    ui:
+        image_optimization_results: Image optimization results
+        optimizer: Optimizer
+        view_image_optimization_results: View image optimization results
+        saved: Saved
+        saved_percent: Percent saved

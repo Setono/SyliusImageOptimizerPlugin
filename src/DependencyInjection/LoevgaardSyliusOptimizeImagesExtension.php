@@ -21,6 +21,8 @@ final class LoevgaardSyliusOptimizeImagesExtension extends Extension
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
+        $container->setParameter('loevgaard.sylius_optimize_images.provider', $config['provider']);
+
         $loader->load('services.xml');
     }
 }

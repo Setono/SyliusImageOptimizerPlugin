@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Loevgaard\SyliusOptimizeImagesPlugin\Optimizer;
 
 use Liip\ImagineBundle\Imagine\Filter\FilterConfiguration;
-use Loevgaard\SyliusOptimizeImagesPlugin\Provider\OptimizationResult\AggregateOptimizationResult;
-use Loevgaard\SyliusOptimizeImagesPlugin\Provider\OptimizationResult\AggregateOptimizationResultInterface;
+use Loevgaard\SyliusOptimizeImagesPlugin\OptimizationResult\AggregateOptimizationResult;
+use Loevgaard\SyliusOptimizeImagesPlugin\OptimizationResult\AggregateOptimizationResultInterface;
 use Loevgaard\SyliusOptimizeImagesPlugin\Provider\ProviderInterface;
-use Loevgaard\SyliusOptimizeImagesPlugin\Resolver\PathResolver;
+use Loevgaard\SyliusOptimizeImagesPlugin\Resolver\PathResolverInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Repository\ProductRepositoryInterface;
 
-class ProductImageOptimizer implements OptimizerInterface
+class ProductImageOptimizer extends Optimizer
 {
     /**
      * @var ProviderInterface
@@ -30,11 +30,11 @@ class ProductImageOptimizer implements OptimizerInterface
     private $filterConfiguration;
 
     /**
-     * @var PathResolver
+     * @var PathResolverInterface
      */
     private $pathResolver;
 
-    public function __construct(ProviderInterface $provider, ProductRepositoryInterface $productRepository, FilterConfiguration $filterConfiguration, PathResolver $pathResolver)
+    public function __construct(ProviderInterface $provider, ProductRepositoryInterface $productRepository, FilterConfiguration $filterConfiguration, PathResolverInterface $pathResolver)
     {
         $this->provider = $provider;
         $this->productRepository = $productRepository;
@@ -47,7 +47,7 @@ class ProductImageOptimizer implements OptimizerInterface
         /** @var ProductInterface[] $products */
         $products = $this->productRepository->findBy([
             //'imagesOptimized' => null
-        ], [], 100);
+        ], []);
 
         $aggregateOptimizationResult = new AggregateOptimizationResult();
 
@@ -55,7 +55,13 @@ class ProductImageOptimizer implements OptimizerInterface
             foreach ($product->getImages() as $image) {
                 foreach ($this->filterConfiguration->all() as $filterName => $filterConfig) {
                     $path = $this->pathResolver->resolve($image->getPath(), $filterName);
-                    $optimizationResult = $this->provider->optimize(new \SplFileInfo($path));
+                    $file = new \SplFileInfo($path);
+
+                    if (!$file->isFile()) {
+                        continue;
+                    }
+
+                    $optimizationResult = $this->provider->optimize($file);
 
                     $aggregateOptimizationResult->addOptimizationResult($optimizationResult);
                 }

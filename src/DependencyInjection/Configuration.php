@@ -15,12 +15,12 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('loevgaard_sylius_optimize_images_plugin');
+        $rootNode = $treeBuilder->root('loevgaard_sylius_optimize_images');
         $rootNode
             ->children()
                 ->scalarNode('provider')
                     ->cannotBeEmpty()
-                    ->defaultValue('loevgaard.sylius_optimize_images.provider.tiny_png')
+                    ->defaultValue('loevgaard.sylius_optimize_images.provider.spatie')
                     ->info('The service name of the provider you want to use')
                 ->end()
                 ->booleanNode('backup')

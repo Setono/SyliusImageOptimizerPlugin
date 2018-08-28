@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Loevgaard\SyliusOptimizeImagesPlugin\Entity;
 
+use Loevgaard\SyliusOptimizeImagesPlugin\Optimizer\OptimizerInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 class ImageOptimizationResult implements ResourceInterface
@@ -28,9 +29,39 @@ class ImageOptimizationResult implements ResourceInterface
      */
     protected $optimizedBytes;
 
+    public function __construct()
+    {
+        $this->originalBytes = 0;
+        $this->optimizedBytes = 0;
+    }
+
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOptimizer(): string
+    {
+        return $this->optimizer;
+    }
+
+    /**
+     * @param string|OptimizerInterface $optimizer
+     */
+    public function setOptimizer($optimizer): void
+    {
+        if ($optimizer instanceof OptimizerInterface) {
+            $optimizer = $optimizer->getCode();
+        }
+
+        if (!is_string($optimizer)) {
+            throw new \InvalidArgumentException('$optimizer must be a string');
+        }
+
+        $this->optimizer = $optimizer;
     }
 
     /**
@@ -50,6 +81,16 @@ class ImageOptimizationResult implements ResourceInterface
     }
 
     /**
+     * Adds to the original bytes
+     *
+     * @param int $originalBytes
+     */
+    public function addOriginalBytes(int $originalBytes): void
+    {
+        $this->originalBytes += $originalBytes;
+    }
+
+    /**
      * @return int
      */
     public function getOptimizedBytes(): int
@@ -66,6 +107,16 @@ class ImageOptimizationResult implements ResourceInterface
     }
 
     /**
+     * Adds to the optimized bytes
+     *
+     * @param int $optimizedBytes
+     */
+    public function addOptimizedBytes(int $optimizedBytes): void
+    {
+        $this->optimizedBytes += $optimizedBytes;
+    }
+
+    /**
      * @return int
      */
     public function getSavedBytes(): int
@@ -73,7 +124,7 @@ class ImageOptimizationResult implements ResourceInterface
         return $this->originalBytes - $this->optimizedBytes;
     }
 
-    public function getSavedSensibleUnit($decimalPoint = '.'): string
+    public function getSavedSensibleUnit(string $decimalPoint = '.', string $thousandsSeparator = ','): string
     {
         $savedBytes = $this->getSavedBytes();
 
@@ -87,19 +138,19 @@ class ImageOptimizationResult implements ResourceInterface
         foreach ($units as $unit => $divisor) {
             $res = $savedBytes / $divisor;
 
-            if($res > 1) {
-                return number_format($res, 2, $decimalPoint).' '.$unit;
+            if ($res > 1) {
+                return number_format($res, 2, $decimalPoint, $thousandsSeparator) . ' ' . $unit;
             }
         }
 
-        return $savedBytes.' B';
+        return $savedBytes . ' B';
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getSavedPercent(): int
+    public function getSavedPercent(): string
     {
-        return (int) floor($this->getSavedBytes() / $this->originalBytes * 100);
+        return floor($this->getSavedBytes() / $this->originalBytes * 100) . '%';
     }
 }

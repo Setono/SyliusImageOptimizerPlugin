@@ -6,15 +6,21 @@ namespace Loevgaard\SyliusOptimizeImagesPlugin\Provider;
 
 use Loevgaard\SyliusOptimizeImagesPlugin\OptimizationResult\OptimizationResult;
 use Loevgaard\SyliusOptimizeImagesPlugin\OptimizationResult\OptimizationResultInterface;
+use Spatie\ImageOptimizer\OptimizerChainFactory;
 
-class TinyPngProvider implements ProviderInterface
+class SpatieProvider extends Provider
 {
     /**
      * {@inheritdoc}
      */
     public function optimize(\SplFileInfo $file): OptimizationResultInterface
     {
-        $result = new OptimizationResult($file, $file);
+        $outputFile = $this->getTempFile();
+
+        $optimizerChain = OptimizerChainFactory::create();
+        $optimizerChain->optimize($file->getPathname(), $outputFile->getPathname());
+
+        $result = new OptimizationResult($file, $outputFile);
 
         return $result;
     }

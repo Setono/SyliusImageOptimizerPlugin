@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusOptimizeImagesPlugin\Provider\OptimizationResult;
+namespace Loevgaard\SyliusOptimizeImagesPlugin\OptimizationResult;
 
 class AggregateOptimizationResult implements AggregateOptimizationResultInterface
 {
@@ -22,7 +22,7 @@ class AggregateOptimizationResult implements AggregateOptimizationResultInterfac
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getOriginalFileSize(): int
     {
@@ -36,7 +36,7 @@ class AggregateOptimizationResult implements AggregateOptimizationResultInterfac
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getOptimizedFileSize(): int
     {

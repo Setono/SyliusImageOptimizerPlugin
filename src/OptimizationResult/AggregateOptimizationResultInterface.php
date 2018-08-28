@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusOptimizeImagesPlugin\Provider\OptimizationResult;
+namespace Loevgaard\SyliusOptimizeImagesPlugin\OptimizationResult;
 
 interface AggregateOptimizationResultInterface
 {

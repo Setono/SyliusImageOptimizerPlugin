@@ -1,0 +1,25 @@
+sylius_resource:
+    resources:
+        loevgaard_sylius_optimize_images.image_optimization_result:
+            driver: doctrine/orm
+            classes:
+                model: Loevgaard\SyliusOptimizeImagesPlugin\Entity\ImageOptimizationResult
+                repository: Loevgaard\SyliusOptimizeImagesPlugin\Repository\ImageOptimizationResultRepository
+
+sylius_grid:
+    grids:
+        loevgaard_sylius_optimize_images_admin_image_optimization_result:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: Loevgaard\SyliusOptimizeImagesPlugin\Entity\ImageOptimizationResult
+            fields:
+                optimizer:
+                    type: string
+                    label: loevgaard_sylius_optimize_images.ui.optimizer
+                savedSensibleUnit:
+                    type: string
+                    label: loevgaard_sylius_optimize_images.ui.saved
+                savedPercent:
+                    type: string
+                    label: loevgaard_sylius_optimize_images.ui.saved_percent

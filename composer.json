@@ -7,7 +7,8 @@
         "php": "^7.1",
 
         "sylius/sylius": "~1.2.3",
-        "symfony/symfony": "^3.4|^4.1"
+        "symfony/symfony": "^3.4|^4.1",
+        "spatie/image-optimizer": "^1.1"
     },
     "require-dev": {
         "behat/behat": "^3.4",
