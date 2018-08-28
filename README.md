@@ -1,0 +1,1 @@
+# Sylius Optimize Images Plugin

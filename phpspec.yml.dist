@@ -1,0 +1,4 @@
+suites:
+    main:
+        namespace: Loevgaard\SyliusOptimizeImagesPlugin
+        psr4_prefix: Loevgaard\SyliusOptimizeImagesPlugin
