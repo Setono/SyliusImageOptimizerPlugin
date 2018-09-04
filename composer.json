@@ -3,12 +3,14 @@
     "type": "sylius-plugin",
     "description": "Sylius plugin that optimizes your images",
     "license": "MIT",
+    "minimum-stability": "dev",
     "require": {
         "php": "^7.1",
 
         "sylius/sylius": "~1.2.3",
         "symfony/symfony": "^3.4|^4.1",
-        "spatie/image-optimizer": "^1.1"
+        "spatie/image-optimizer": "^1.1",
+        "setono/tiny-png-bundle": "dev-master"
     },
     "require-dev": {
         "behat/behat": "^3.4",

@@ -43,7 +43,7 @@ class ImageOptimizationResult implements ResourceInterface
     /**
      * @return string
      */
-    public function getOptimizer(): string
+    public function getOptimizer(): ?string
     {
         return $this->optimizer;
     }
@@ -67,7 +67,7 @@ class ImageOptimizationResult implements ResourceInterface
     /**
      * @return int
      */
-    public function getOriginalBytes(): int
+    public function getOriginalBytes(): ?int
     {
         return $this->originalBytes;
     }
@@ -93,7 +93,7 @@ class ImageOptimizationResult implements ResourceInterface
     /**
      * @return int
      */
-    public function getOptimizedBytes(): int
+    public function getOptimizedBytes(): ?int
     {
         return $this->optimizedBytes;
     }
@@ -117,13 +117,23 @@ class ImageOptimizationResult implements ResourceInterface
     }
 
     /**
+     * Number of bytes saved between the original bytes and the optimized bytes
+     *
      * @return int
      */
     public function getSavedBytes(): int
     {
-        return $this->originalBytes - $this->optimizedBytes;
+        return (int) $this->getOriginalBytes() - (int) $this->getOptimizedBytes();
     }
 
+    /**
+     * Returns a sensible unit on the number of bytes saved for this optimizer, i.e. 1.34 GB
+     *
+     * @param string $decimalPoint
+     * @param string $thousandsSeparator
+     *
+     * @return string
+     */
     public function getSavedSensibleUnit(string $decimalPoint = '.', string $thousandsSeparator = ','): string
     {
         $savedBytes = $this->getSavedBytes();
@@ -147,10 +157,19 @@ class ImageOptimizationResult implements ResourceInterface
     }
 
     /**
+     * Returns a string representing how many percent that has been saved for this optimizer, i.e. 23%
+     *
      * @return string
      */
     public function getSavedPercent(): string
     {
-        return floor($this->getSavedBytes() / $this->originalBytes * 100) . '%';
+        $originalBytes = (int) $this->getOriginalBytes();
+        $savedPercent = 0;
+
+        if ($originalBytes > 0) {
+            $savedPercent = floor($this->getSavedBytes() / $this->getOriginalBytes() * 100);
+        }
+
+        return $savedPercent . '%';
     }
 }

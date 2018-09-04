@@ -9,3 +9,4 @@
 !/etc/build/.gitkeep
 
 /tests/Application/yarn.lock
+/tests/Application/app/config/parameters.yml

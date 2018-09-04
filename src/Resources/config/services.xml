@@ -6,20 +6,17 @@
             <bind key="$liipImagineResolvers">%liip_imagine.resolvers%</bind>
         </defaults>
         <prototype namespace="Loevgaard\SyliusOptimizeImagesPlugin\Command\" resource="../../Command/*" />
-        <prototype namespace="Loevgaard\SyliusOptimizeImagesPlugin\Provider\" resource="../../Provider/*" />
         <prototype namespace="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\" resource="../../Resolver/*" />
         <prototype namespace="Loevgaard\SyliusOptimizeImagesPlugin\Runner\" resource="../../Runner/*" />
 
-        <instanceof id="Loevgaard\SyliusOptimizeImagesPlugin\Optimizer\OptimizerInterface" public="true">
-            <tag name="loevgaard.sylius_optimize_images.optimizer" />
-        </instanceof>
-
         <!-- Aliases -->
         <service id="Loevgaard\SyliusOptimizeImagesPlugin\Runner\RunnerInterface" alias="Loevgaard\SyliusOptimizeImagesPlugin\Runner\Runner" />
-        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Provider\ProviderInterface" alias="Loevgaard\SyliusOptimizeImagesPlugin\Provider\SpatieProvider" />
         <service id="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\PathResolverInterface" alias="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\PathResolver" />
         <service id="Loevgaard\SyliusOptimizeImagesPlugin\Persister\ImageOptimizationResultPersisterInterface" alias="Loevgaard\SyliusOptimizeImagesPlugin\Persister\ImageOptimizationResultPersister" />
-        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Manager\OptimizerManagerInterface" alias="Loevgaard\SyliusOptimizeImagesPlugin\Manager\OptimizerManager" />
+
+        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Imagine\Filter\PostProcessor\TinyPngPostProcessor">
+            <tag name="liip_imagine.filter.post_processor" post_processor="tiny_png_post_processor" />
+        </service>
 
         <service id="Loevgaard\SyliusOptimizeImagesPlugin\Menu\AdminMenuListener">
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addAdminMenuItems" />
@@ -28,15 +25,6 @@
         <service id="Loevgaard\SyliusOptimizeImagesPlugin\Persister\ImageOptimizationResultPersister">
             <argument type="service" id="loevgaard_sylius_optimize_images.factory.image_optimization_result" />
             <argument type="service" id="loevgaard_sylius_optimize_images.repository.image_optimization_result" />
-        </service>
-
-        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Optimizer\ProductImageOptimizer">
-            <argument type="service" id="Loevgaard\SyliusOptimizeImagesPlugin\Provider\ProviderInterface" />
-            <argument type="service" id="sylius.repository.product" />
-            <argument type="service" id="liip_imagine.filter.configuration" />
-            <argument type="service" id="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\PathResolverInterface" />
-
-            <tag name="loevgaard.sylius_optimize_images.optimizer" />
         </service>
     </services>
 </container>

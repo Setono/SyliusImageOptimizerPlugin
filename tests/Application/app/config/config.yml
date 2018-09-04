@@ -3,6 +3,7 @@ parameters:
     secret: "Heron is the best animal in the world!"
 
 imports:
+    - { resource: "parameters.yml" }
     - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
@@ -72,3 +73,6 @@ liip_imagine:
             web_path:
                 web_root: "%kernel.project_dir%/web"
                 cache_prefix: "media/cache"
+
+setono_tiny_png:
+    api_key: test
