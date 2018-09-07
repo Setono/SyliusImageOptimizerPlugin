@@ -24,8 +24,25 @@ final class LoevgaardSyliusOptimizeImagesExtension extends Extension implements 
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
+        $container->setParameter('loevgaard.sylius_optimize_images.resources', $config['resources']);
         $container->setParameter('loevgaard.sylius_optimize_images.filter_sets', $config['filter_sets']);
 
+        $this->validateFilterSetsConfig($container, $config);
+
+        $loader->load('services.xml');
+    }
+
+    /**
+     * Validate the filter_sets config option
+     *
+     * @param ContainerBuilder $container
+     * @param array $config
+     *
+     * @throws \Exception
+     */
+    private function validateFilterSetsConfig(ContainerBuilder $container, array $config): void
+    {
+        // if the filter_sets config is set we validate the filter sets against the available filter sets defined in the application
         if (!empty($config['filter_sets'])) {
             $availableFilterSets = $this->getAvailableFilterSets($container);
 
@@ -35,15 +52,21 @@ final class LoevgaardSyliusOptimizeImagesExtension extends Extension implements 
                 }
             }
         }
-
-        $loader->load('services.xml');
     }
 
+    /**
+     * @inheritdoc
+     */
     public function prepend(ContainerBuilder $container)
     {
         $this->prependPostProcessor($container);
     }
 
+    /**
+     * This method adds the TinyPNG post processor to the enabled filter sets
+     *
+     * @param ContainerBuilder $container
+     */
     private function prependPostProcessor(ContainerBuilder $container): void
     {
         $enabledFilterSets = $this->getEnabledFilterSets($container);

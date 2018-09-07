@@ -18,9 +18,16 @@ final class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('loevgaard_sylius_optimize_images');
         $rootNode
             ->fixXmlConfig('filter_set')
+            ->fixXmlConfig('resource')
             ->children()
                 ->arrayNode('filter_sets')
                     ->scalarPrototype()->end()
+                ->end()
+            ->end()
+            ->children()
+                ->arrayNode('resources')
+                    ->scalarPrototype()->end()
+                    ->info('The resource must implement the interface Sylius\Component\Core\Model\ImageInterface')
                 ->end()
             ->end()
         ;

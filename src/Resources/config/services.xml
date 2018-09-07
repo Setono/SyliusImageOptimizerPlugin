@@ -5,17 +5,32 @@
         <defaults autowire="true" autoconfigure="true" public="false">
             <bind key="$liipImagineResolvers">%liip_imagine.resolvers%</bind>
         </defaults>
-        <prototype namespace="Loevgaard\SyliusOptimizeImagesPlugin\Command\" resource="../../Command/*" />
         <prototype namespace="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\" resource="../../Resolver/*" />
-        <prototype namespace="Loevgaard\SyliusOptimizeImagesPlugin\Runner\" resource="../../Runner/*" />
 
         <!-- Aliases -->
-        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Runner\RunnerInterface" alias="Loevgaard\SyliusOptimizeImagesPlugin\Runner\Runner" />
+        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Runner\RunnerInterface" alias="loevgaard.sylius_optimize_images.runner.default_runner" />
         <service id="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\PathResolverInterface" alias="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\PathResolver" />
         <service id="Loevgaard\SyliusOptimizeImagesPlugin\Persister\ImageOptimizationResultPersisterInterface" alias="Loevgaard\SyliusOptimizeImagesPlugin\Persister\ImageOptimizationResultPersister" />
+        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\ResourcesResolverInterface" alias="loevgaard.sylius_optimize_images.resolver.resources_resolver" />
+
+        <service id="loevgaard.sylius_optimize_images.command.optimize_command" class="Loevgaard\SyliusOptimizeImagesPlugin\Command\OptimizeCommand">
+            <argument type="service" id="Loevgaard\SyliusOptimizeImagesPlugin\Runner\RunnerInterface" />
+            <tag name="console.command" />
+        </service>
 
         <service id="Loevgaard\SyliusOptimizeImagesPlugin\Imagine\Filter\PostProcessor\TinyPngPostProcessor">
+            <argument type="service" id="Setono\TinyPngBundle\Client\ClientInterface" />
             <tag name="liip_imagine.filter.post_processor" post_processor="tiny_png_post_processor" />
+        </service>
+
+        <service id="loevgaard.sylius_optimize_images.runner.default_runner" class="Loevgaard\SyliusOptimizeImagesPlugin\Runner\Runner">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\ResourcesResolverInterface" />
+        </service>
+
+        <service id="loevgaard.sylius_optimize_images.resolver.resources_resolver" class="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\ResourcesResolver">
+            <argument type="service" id="sylius.resource_registry" />
+            <argument>%loevgaard.sylius_optimize_images.resources%</argument>
         </service>
 
         <service id="Loevgaard\SyliusOptimizeImagesPlugin\Menu\AdminMenuListener">

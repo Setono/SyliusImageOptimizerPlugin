@@ -16,10 +16,10 @@ class TinyPngPostProcessor implements PostProcessorInterface
      */
     private $client;
 
-//    public function __construct(TinyPngClientInterface $client)
-//    {
-//        $this->client = $client;
-//    }
+    public function __construct(TinyPngClientInterface $client)
+    {
+        $this->client = $client;
+    }
 
     public function process(BinaryInterface $binary, array $options = []): BinaryInterface
     {
