@@ -31,6 +31,9 @@ install:
     - composer require "symfony/symfony:${SYMFONY_VERSION}" --no-interaction --no-update
     - composer install --no-interaction --prefer-dist
 
+before_script:
+    - (cd tests/Application && bin/console cache:warmup --env=test -vvv)
+
 script:
     - composer validate --strict
     - bin/phpstan.phar analyse -c phpstan.neon -l max src/
