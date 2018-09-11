@@ -3,7 +3,6 @@ parameters:
     secret: "Heron is the best animal in the world!"
 
 imports:
-    - { resource: "parameters.yml" }
     - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
