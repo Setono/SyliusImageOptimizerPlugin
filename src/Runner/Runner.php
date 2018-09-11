@@ -38,6 +38,13 @@ final class Runner implements RunnerInterface
      */
     private $storer;
 
+    /**
+     * @param ContainerInterface $container
+     * @param ResourcesResolverInterface $resourcesResolver
+     * @param FilterSetsResolverInterface $filterSetsResolver
+     * @param ResolverInterface $cacheResolver
+     * @param StorerInterface $storer
+     */
     public function __construct(
         ContainerInterface $container,
         ResourcesResolverInterface $resourcesResolver,
@@ -52,6 +59,9 @@ final class Runner implements RunnerInterface
         $this->storer = $storer;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function run(): void
     {
         $resources = $this->resourcesResolver->resolveResources();
@@ -69,7 +79,7 @@ final class Runner implements RunnerInterface
 
             foreach ($paths as $path) {
                 foreach ($filterSets as $filterSet) {
-                    if($this->cacheResolver->isStored($path, $filterSet)) {
+                    if ($this->cacheResolver->isStored($path, $filterSet)) {
                         continue;
                     }
 

@@ -1,6 +1,2 @@
 sylius:
     resource: "../../../../vendor/sylius/sylius/app/config/routing.yml"
-
-loevgaard_sylius_optimize_images:
-    resource: "@LoevgaardSyliusOptimizeImagesPlugin/Resources/config/admin_routing.yml"
-    prefix: /admin

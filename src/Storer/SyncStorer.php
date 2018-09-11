@@ -13,13 +13,16 @@ class SyncStorer implements StorerInterface
      */
     private $filterService;
 
+    /**
+     * @param FilterService $filterService
+     */
     public function __construct(FilterService $filterService)
     {
         $this->filterService = $filterService;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function store(string $path, string $filter): void
     {

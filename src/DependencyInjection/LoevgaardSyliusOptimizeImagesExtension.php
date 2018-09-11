@@ -55,7 +55,7 @@ final class LoevgaardSyliusOptimizeImagesExtension extends Extension implements 
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function prepend(ContainerBuilder $container)
     {

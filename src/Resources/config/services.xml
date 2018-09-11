@@ -2,16 +2,10 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <defaults autowire="true" autoconfigure="true" public="false">
-            <bind key="$liipImagineResolvers">%liip_imagine.resolvers%</bind>
-        </defaults>
-        <prototype namespace="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\" resource="../../Resolver/*" />
-
         <!-- Aliases -->
-        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Runner\RunnerInterface" alias="loevgaard.sylius_optimize_images.runner.default_runner" />
-        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\PathResolverInterface" alias="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\PathResolver" />
-        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Persister\ImageOptimizationResultPersisterInterface" alias="Loevgaard\SyliusOptimizeImagesPlugin\Persister\ImageOptimizationResultPersister" />
+        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Runner\RunnerInterface" alias="loevgaard.sylius_optimize_images.runner.default" />
         <service id="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\ResourcesResolverInterface" alias="loevgaard.sylius_optimize_images.resolver.resources_resolver" />
+        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\FilterSetsResolverInterface" alias="loevgaard.sylius_optimize_images.resolver.filter_sets_resolver" />
 
         <service id="loevgaard.sylius_optimize_images.command.optimize_command" class="Loevgaard\SyliusOptimizeImagesPlugin\Command\OptimizeCommand">
             <argument type="service" id="Loevgaard\SyliusOptimizeImagesPlugin\Runner\RunnerInterface" />
@@ -23,23 +17,26 @@
             <tag name="liip_imagine.filter.post_processor" post_processor="tiny_png_post_processor" />
         </service>
 
-        <service id="loevgaard.sylius_optimize_images.runner.default_runner" class="Loevgaard\SyliusOptimizeImagesPlugin\Runner\Runner">
+        <service id="loevgaard.sylius_optimize_images.runner.default" class="Loevgaard\SyliusOptimizeImagesPlugin\Runner\Runner">
             <argument type="service" id="service_container" />
             <argument type="service" id="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\ResourcesResolverInterface" />
+            <argument type="service" id="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\FilterSetsResolverInterface" />
+            <argument type="service" id="liip_imagine.cache.resolver.default" />
+            <argument type="service" id="Loevgaard\SyliusOptimizeImagesPlugin\Storer\StorerInterface" />
+        </service>
+
+        <service id="loevgaard.sylius_optimize_images.storer.sync_storer" class="Loevgaard\SyliusOptimizeImagesPlugin\Storer\SyncStorer">
+            <argument type="service" id="liip_imagine.service.filter" />
+        </service>
+
+        <service id="loevgaard.sylius_optimize_images.resolver.filter_sets_resolver" class="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\FilterSetsResolver">
+            <argument type="service" id="liip_imagine.filter.manager" />
+            <argument>%loevgaard.sylius_optimize_images.filter_sets%</argument>
         </service>
 
         <service id="loevgaard.sylius_optimize_images.resolver.resources_resolver" class="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\ResourcesResolver">
             <argument type="service" id="sylius.resource_registry" />
             <argument>%loevgaard.sylius_optimize_images.resources%</argument>
-        </service>
-
-        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Menu\AdminMenuListener">
-            <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addAdminMenuItems" />
-        </service>
-
-        <service id="Loevgaard\SyliusOptimizeImagesPlugin\Persister\ImageOptimizationResultPersister">
-            <argument type="service" id="loevgaard_sylius_optimize_images.factory.image_optimization_result" />
-            <argument type="service" id="loevgaard_sylius_optimize_images.repository.image_optimization_result" />
         </service>
     </services>
 </container>

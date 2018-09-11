@@ -18,6 +18,10 @@ class FilterSetsResolver implements FilterSetsResolverInterface
      */
     private $filterSetsConfig;
 
+    /**
+     * @param FilterManager $filterManager
+     * @param array $filterSetsConfig The bundle's filter set config
+     */
     public function __construct(FilterManager $filterManager, array $filterSetsConfig)
     {
         $this->filterManager = $filterManager;
@@ -25,27 +29,26 @@ class FilterSetsResolver implements FilterSetsResolverInterface
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function resolveFilterSets(): array
     {
         $availableFilterSets = array_keys($this->filterManager->getFilterConfiguration()->all());
 
-        if(empty($this->filterSetsConfig)) {
+        if (empty($this->filterSetsConfig)) {
             return $availableFilterSets;
-        } else {
-            $res = [];
+        }
+        $res = [];
 
-            // validate that all filter sets are in the filter configuration
-            foreach ($this->filterSetsConfig as $item) {
-                if(!in_array($item, $availableFilterSets)) {
-                    continue;
-                }
-
-                $res[] = $item;
+        // validate that all filter sets are in the filter configuration
+        foreach ($this->filterSetsConfig as $item) {
+            if (!in_array($item, $availableFilterSets)) {
+                continue;
             }
 
-            return $res;
+            $res[] = $item;
         }
+
+        return $res;
     }
 }

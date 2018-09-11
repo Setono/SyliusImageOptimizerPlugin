@@ -16,6 +16,9 @@ class OptimizeCommand extends Command
      */
     private $runner;
 
+    /**
+     * @param RunnerInterface $runner
+     */
     public function __construct(RunnerInterface $runner)
     {
         parent::__construct();

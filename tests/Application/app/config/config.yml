@@ -9,8 +9,6 @@ imports:
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusAdminApiBundle/Resources/config/app/config.yml" }
 
-    - { resource: "@LoevgaardSyliusOptimizeImagesPlugin/Resources/config/config.yml" }
-
     - { resource: "../../../../vendor/sylius/sylius/app/config/security.yml" }
 
 framework:
@@ -68,6 +66,7 @@ sylius_theme:
         test: ~
 
 liip_imagine:
+    enqueue: true
     resolvers:
         default:
             web_path:
@@ -76,3 +75,8 @@ liip_imagine:
 
 setono_tiny_png:
     api_key: test
+
+enqueue:
+    transport:
+        default: 'file://%kernel.root_dir%/../var/queues'
+    client: ~

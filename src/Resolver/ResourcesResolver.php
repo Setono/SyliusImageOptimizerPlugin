@@ -20,6 +20,10 @@ class ResourcesResolver implements ResourcesResolverInterface
      */
     private $resourcesConfig;
 
+    /**
+     * @param RegistryInterface $registry
+     * @param array $resourcesConfig The bundle's resources config
+     */
     public function __construct(RegistryInterface $registry, array $resourcesConfig)
     {
         $this->registry = $registry;
@@ -27,17 +31,17 @@ class ResourcesResolver implements ResourcesResolverInterface
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function resolveResources(): array
     {
         $res = [];
 
-        if(empty($this->resourcesConfig)) {
+        if (empty($this->resourcesConfig)) {
             // find all resources that implements the Sylius\Component\Core\Model\ImageInterface
             $resources = $this->registry->getAll();
             foreach ($resources as $resource) {
-                if(!$this->implementsImageInterface($resource)) {
+                if (!$this->implementsImageInterface($resource)) {
                     continue;
                 }
 
@@ -48,7 +52,7 @@ class ResourcesResolver implements ResourcesResolverInterface
             foreach ($this->resourcesConfig as $item) {
                 $resource = $this->registry->get($item);
 
-                if(!$this->implementsImageInterface($resource)) {
+                if (!$this->implementsImageInterface($resource)) {
                     continue;
                 }
 

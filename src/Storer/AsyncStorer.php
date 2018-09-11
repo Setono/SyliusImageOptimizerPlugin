@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Loevgaard\SyliusOptimizeImagesPlugin\Storer;
 
+use Enqueue\Client\Message;
 use Enqueue\Client\ProducerInterface;
 use Liip\ImagineBundle\Async\Commands;
 use Liip\ImagineBundle\Async\ResolveCache;
@@ -15,16 +16,19 @@ class AsyncStorer implements StorerInterface
      */
     private $producer;
 
+    /**
+     * @param ProducerInterface $producer
+     */
     public function __construct(ProducerInterface $producer)
     {
         $this->producer = $producer;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function store(string $path, string $filter): void
     {
-        $this->producer->sendCommand(Commands::RESOLVE_CACHE, new ResolveCache($path, [$filter]));
+        $this->producer->sendCommand(Commands::RESOLVE_CACHE, new Message(new ResolveCache($path, [$filter])));
     }
 }
