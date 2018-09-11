@@ -9,7 +9,7 @@
 
         "sylius/sylius": "~1.2.3",
         "symfony/symfony": "^3.4|^4.1",
-        "setono/tiny-png-bundle": "^1.0.3"
+        "setono/tiny-png-bundle": "^1.0.4"
     },
     "require-dev": {
         "enqueue/enqueue-bundle": "^0.8.35",
