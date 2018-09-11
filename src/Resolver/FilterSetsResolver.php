@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Loevgaard\SyliusOptimizeImagesPlugin\Resolver;
 
-use Liip\ImagineBundle\Imagine\Filter\FilterManager;
+use Liip\ImagineBundle\Imagine\Filter\FilterConfiguration;
 
 class FilterSetsResolver implements FilterSetsResolverInterface
 {
     /**
-     * @var FilterManager
+     * @var FilterConfiguration
      */
-    private $filterManager;
+    private $filterConfiguration;
 
     /**
      * @var string[]
@@ -19,12 +19,12 @@ class FilterSetsResolver implements FilterSetsResolverInterface
     private $filterSetsConfig;
 
     /**
-     * @param FilterManager $filterManager
+     * @param FilterConfiguration $filterConfiguration
      * @param array $filterSetsConfig The bundle's filter set config
      */
-    public function __construct(FilterManager $filterManager, array $filterSetsConfig)
+    public function __construct(FilterConfiguration $filterConfiguration, array $filterSetsConfig)
     {
-        $this->filterManager = $filterManager;
+        $this->filterConfiguration = $filterConfiguration;
         $this->filterSetsConfig = $filterSetsConfig;
     }
 
@@ -33,7 +33,7 @@ class FilterSetsResolver implements FilterSetsResolverInterface
      */
     public function resolveFilterSets(): array
     {
-        $availableFilterSets = array_keys($this->filterManager->getFilterConfiguration()->all());
+        $availableFilterSets = array_keys($this->filterConfiguration->all());
 
         if (empty($this->filterSetsConfig)) {
             return $availableFilterSets;

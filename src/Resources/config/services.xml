@@ -30,7 +30,7 @@
         </service>
 
         <service id="loevgaard.sylius_optimize_images.resolver.filter_sets_resolver" class="Loevgaard\SyliusOptimizeImagesPlugin\Resolver\FilterSetsResolver">
-            <argument type="service" id="liip_imagine.filter.manager" />
+            <argument type="service" id="liip_imagine.filter.configuration" />
             <argument>%loevgaard.sylius_optimize_images.filter_sets%</argument>
         </service>
 
