@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusOptimizeImagesPlugin\Runner;
+namespace Setono\SyliusOptimizeImagesPlugin\Runner;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Liip\ImagineBundle\Imagine\Cache\Resolver\ResolverInterface;
-use Loevgaard\SyliusOptimizeImagesPlugin\Resolver\FilterSetsResolverInterface;
-use Loevgaard\SyliusOptimizeImagesPlugin\Resolver\ResourcesResolverInterface;
-use Loevgaard\SyliusOptimizeImagesPlugin\Storer\StorerInterface;
+use Setono\SyliusOptimizeImagesPlugin\Resolver\FilterSetsResolverInterface;
+use Setono\SyliusOptimizeImagesPlugin\Resolver\ResourcesResolverInterface;
+use Setono\SyliusOptimizeImagesPlugin\Storer\StorerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 final class Runner implements RunnerInterface

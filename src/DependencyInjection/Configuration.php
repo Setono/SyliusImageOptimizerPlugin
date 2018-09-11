@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusOptimizeImagesPlugin\DependencyInjection;
+namespace Setono\SyliusOptimizeImagesPlugin\DependencyInjection;
 
 use Sylius\Component\Core\Model\ImageInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -16,7 +16,7 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('loevgaard_sylius_optimize_images');
+        $rootNode = $treeBuilder->root('setono_sylius_optimize_images');
         $rootNode
             ->fixXmlConfig('filter_set')
             ->fixXmlConfig('resource')

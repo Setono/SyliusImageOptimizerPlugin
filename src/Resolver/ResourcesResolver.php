@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusOptimizeImagesPlugin\Resolver;
+namespace Setono\SyliusOptimizeImagesPlugin\Resolver;
 
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Resource\Metadata\MetadataInterface;

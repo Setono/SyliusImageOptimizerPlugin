@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusOptimizeImagesPlugin\DependencyInjection\Compiler;
+namespace Setono\SyliusOptimizeImagesPlugin\DependencyInjection\Compiler;
 
-use Loevgaard\SyliusOptimizeImagesPlugin\Storer\AsyncStorer;
-use Loevgaard\SyliusOptimizeImagesPlugin\Storer\StorerInterface;
+use Setono\SyliusOptimizeImagesPlugin\Storer\AsyncStorer;
+use Setono\SyliusOptimizeImagesPlugin\Storer\StorerInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -20,11 +20,11 @@ final class StorerPass implements CompilerPassInterface
     {
         if ($this->isEnqueueEnabled($container)) {
             $definition = new Definition(AsyncStorer::class, [new Reference('enqueue.producer')]);
-            $container->setDefinition('loevgaard.sylius_optimize_images.storer.async_storer', $definition);
+            $container->setDefinition('setono.sylius_optimize_images.storer.async_storer', $definition);
 
-            $container->setAlias(StorerInterface::class, 'loevgaard.sylius_optimize_images.storer.async_storer');
+            $container->setAlias(StorerInterface::class, 'setono.sylius_optimize_images.storer.async_storer');
         } else {
-            $container->setAlias(StorerInterface::class, 'loevgaard.sylius_optimize_images.storer.sync_storer');
+            $container->setAlias(StorerInterface::class, 'setono.sylius_optimize_images.storer.sync_storer');
         }
     }
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Loevgaard\SyliusOptimizeImagesPlugin\Imagine\Filter\PostProcessor;
+namespace Tests\Setono\SyliusOptimizeImagesPlugin\Imagine\Filter\PostProcessor;
 
 use Liip\ImagineBundle\Model\Binary;
-use Loevgaard\SyliusOptimizeImagesPlugin\Imagine\Filter\PostProcessor\TinyPngPostProcessor;
+use Setono\SyliusOptimizeImagesPlugin\Imagine\Filter\PostProcessor\TinyPngPostProcessor;
 use PHPUnit\Framework\TestCase;
 use Setono\TinyPngBundle\Client\ClientInterface;
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Loevgaard\SyliusOptimizeImagesPlugin\Resolver;
+namespace Tests\Setono\SyliusOptimizeImagesPlugin\Resolver;
 
 use Liip\ImagineBundle\Imagine\Filter\FilterConfiguration;
-use Loevgaard\SyliusOptimizeImagesPlugin\Resolver\FilterSetsResolver;
+use Setono\SyliusOptimizeImagesPlugin\Resolver\FilterSetsResolver;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

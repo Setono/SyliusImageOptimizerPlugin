@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusOptimizeImagesPlugin\DependencyInjection;
+namespace Setono\SyliusOptimizeImagesPlugin\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-final class LoevgaardSyliusOptimizeImagesExtension extends Extension implements PrependExtensionInterface
+final class SetonoSyliusOptimizeImagesExtension extends Extension implements PrependExtensionInterface
 {
     const LIIP_IMAGINE_EXTENSION_NAME = 'liip_imagine';
 
@@ -24,8 +24,8 @@ final class LoevgaardSyliusOptimizeImagesExtension extends Extension implements 
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
-        $container->setParameter('loevgaard.sylius_optimize_images.resources', $config['resources']);
-        $container->setParameter('loevgaard.sylius_optimize_images.filter_sets', $config['filter_sets']);
+        $container->setParameter('setono.sylius_optimize_images.resources', $config['resources']);
+        $container->setParameter('setono.sylius_optimize_images.filter_sets', $config['filter_sets']);
 
         $this->validateFilterSetsConfig($container, $config);
 

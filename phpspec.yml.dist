@@ -1,4 +1,4 @@
 suites:
     main:
-        namespace: Loevgaard\SyliusOptimizeImagesPlugin
-        psr4_prefix: Loevgaard\SyliusOptimizeImagesPlugin
+        namespace: Setono\SyliusOptimizeImagesPlugin
+        psr4_prefix: Setono\SyliusOptimizeImagesPlugin

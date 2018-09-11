@@ -18,7 +18,7 @@ Follow the [installation instructions for the TinyPNG bundle](https://github.com
 Open a command console, enter your project directory and execute the following command to download the latest stable version of this plugin:
 
 ```bash
-$ composer require loevgaard/sylius-optimize-images-plugin
+$ composer require setono/sylius-optimize-images-plugin
 ```
 
 This command requires you to have Composer installed globally, as explained in the [installation chapter](https://getcomposer.org/doc/00-intro.md) of the Composer documentation.
@@ -41,7 +41,7 @@ final class AppKernel extends Kernel
     {
         return array_merge(parent::registerBundles(), [
             // ...
-            new \Loevgaard\SyliusOptimizeImagesPlugin\LoevgaardSyliusOptimizeImagesPlugin(),
+            new \Setono\SyliusOptimizeImagesPlugin\SetonoSyliusOptimizeImagesPlugin(),
             // ...
         ]);
     }
@@ -59,7 +59,7 @@ You can limit both the resources and the filter sets optimized:
 ```yaml
 # app/config/config.yml
 
-loevgaard_sylius_optimize_images:
+setono_sylius_optimize_images:
     resources:
         - sylius.product_image
     filter_sets:
@@ -76,15 +76,14 @@ The default Sylius shop will process images on demand. Using this plugin means t
 
 If you enable that, all you need to do is run the optimize command:
 ```bash
-$ php bin/console loevgaard:sylius-optimize-images:optimize
+$ php bin/console setono:sylius-optimize-images:optimize
 ```
 
-[ico-version]: https://img.shields.io/packagist/v/loevgaard/sylius-optimize-images-plugin.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/setono/sylius-optimize-images-plugin.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/loevgaard/SyliusOptimizeImagesPlugin/master.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/loevgaard/SyliusOptimizeImagesPlugin.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/Setono/SyliusOptimizeImagesPlugin/master.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusOptimizeImagesPlugin.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/loevgaard/sylius-optimize-images-plugin
-[link-travis]: https://travis-ci.org/loevgaard/SyliusOptimizeImagesPlugin
-[link-scrutinizer]: https://scrutinizer-ci.com/g/loevgaard/SyliusOptimizeImagesPlugin/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/loevgaard/SyliusOptimizeImagesPlugin
+[link-packagist]: https://packagist.org/packages/setono/sylius-optimize-images-plugin
+[link-travis]: https://travis-ci.org/Setono/SyliusOptimizeImagesPlugin
+[link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusOptimizeImagesPlugin

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusOptimizeImagesPlugin\Resolver;
+namespace Setono\SyliusOptimizeImagesPlugin\Resolver;
 
 use Liip\ImagineBundle\Imagine\Filter\FilterConfiguration;
 

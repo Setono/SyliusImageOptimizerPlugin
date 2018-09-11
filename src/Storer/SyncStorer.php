@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusOptimizeImagesPlugin\Storer;
+namespace Setono\SyliusOptimizeImagesPlugin\Storer;
 
 use Liip\ImagineBundle\Service\FilterService;
 

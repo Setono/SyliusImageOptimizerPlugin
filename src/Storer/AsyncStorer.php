@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusOptimizeImagesPlugin\Storer;
+namespace Setono\SyliusOptimizeImagesPlugin\Storer;
 
 use Enqueue\Client\Message;
 use Enqueue\Client\ProducerInterface;

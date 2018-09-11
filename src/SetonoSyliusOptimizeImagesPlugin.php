@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Loevgaard\SyliusOptimizeImagesPlugin;
+namespace Setono\SyliusOptimizeImagesPlugin;
 
-use Loevgaard\SyliusOptimizeImagesPlugin\DependencyInjection\Compiler\StorerPass;
+use Setono\SyliusOptimizeImagesPlugin\DependencyInjection\Compiler\StorerPass;
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-final class LoevgaardSyliusOptimizeImagesPlugin extends Bundle
+final class SetonoSyliusOptimizeImagesPlugin extends Bundle
 {
     use SyliusPluginTrait;
 

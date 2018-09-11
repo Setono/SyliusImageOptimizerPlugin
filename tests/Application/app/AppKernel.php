@@ -22,7 +22,7 @@ final class AppKernel extends Kernel
             new \Enqueue\Bundle\EnqueueBundle(),
 
             new Setono\TinyPngBundle\SetonoTinyPngBundle(),
-            new \Loevgaard\SyliusOptimizeImagesPlugin\LoevgaardSyliusOptimizeImagesPlugin(),
+            new \Setono\SyliusOptimizeImagesPlugin\SetonoSyliusOptimizeImagesPlugin(),
         ]);
     }
 
