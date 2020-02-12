@@ -1,4 +1,4 @@
 suites:
     main:
-        namespace: Setono\SyliusOptimizeImagesPlugin
-        psr4_prefix: Setono\SyliusOptimizeImagesPlugin
+        namespace: Setono\SyliusPickupPointPlugin
+        psr4_prefix: Setono\SyliusPickupPointPlugin
