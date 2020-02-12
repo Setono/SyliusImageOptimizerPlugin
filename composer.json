@@ -1,5 +1,5 @@
 {
-    "name": "setono/sylius-optimize-images-plugin",
+    "name": "setono/sylius-image-optimizer-plugin",
     "type": "sylius-plugin",
     "description": "Sylius plugin that optimizes your images",
     "license": "MIT",
@@ -40,8 +40,8 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Setono\\SyliusOptimizeImagesPlugin\\": "src/",
-            "Tests\\Setono\\SyliusOptimizeImagesPlugin\\": "tests/"
+            "Setono\\SyliusImageOptimizerPlugin\\": "src/",
+            "Tests\\Setono\\SyliusImageOptimizerPlugin\\": "tests/"
         }
     },
     "autoload-dev": {
@@ -57,8 +57,8 @@
     },
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse -c phpstan.neon -l max src",
-        "check-style": "vendor/bin/ecs check src/ spec/ tests/",
-        "fix-style": "vendor/bin/ecs check src/ spec/ tests/ --fix",
+        "check-style": "vendor/bin/ecs check src/ tests/",
+        "fix-style": "vendor/bin/ecs check src/ tests/ --fix",
         "phpspec": "vendor/bin/phpspec run -vvv",
         "phpunit": "vendor/bin/phpunit",
         "tests": [

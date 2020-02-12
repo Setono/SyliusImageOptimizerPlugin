@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusOptimizeImagesPlugin\Resolver;
+namespace Setono\SyliusImageOptimizerPlugin\Resolver;
 
 use Sylius\Component\Resource\Metadata\MetadataInterface;
 

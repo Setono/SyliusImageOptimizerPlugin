@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusOptimizeImagesPlugin\Runner;
+namespace Setono\SyliusImageOptimizerPlugin\Runner;
 
 interface RunnerInterface
 {

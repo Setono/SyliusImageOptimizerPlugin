@@ -2,23 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusOptimizeImagesPlugin\Command;
+namespace Setono\SyliusImageOptimizerPlugin\Command;
 
-use Setono\SyliusOptimizeImagesPlugin\Runner\RunnerInterface;
+use Setono\SyliusImageOptimizerPlugin\Runner\RunnerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class OptimizeCommand extends Command
 {
-    /**
-     * @var RunnerInterface
-     */
+    /** @var RunnerInterface */
     private $runner;
 
-    /**
-     * @param RunnerInterface $runner
-     */
     public function __construct(RunnerInterface $runner)
     {
         parent::__construct();

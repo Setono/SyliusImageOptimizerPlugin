@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusOptimizeImagesPlugin\Imagine\Filter\PostProcessor;
+namespace Tests\Setono\SyliusImageOptimizerPlugin\Imagine\Filter\PostProcessor;
 
 use Liip\ImagineBundle\Model\Binary;
-use Setono\SyliusOptimizeImagesPlugin\Imagine\Filter\PostProcessor\TinyPngPostProcessor;
 use PHPUnit\Framework\TestCase;
+use Setono\SyliusImageOptimizerPlugin\Imagine\Filter\PostProcessor\TinyPngPostProcessor;
 use Setono\TinyPngBundle\Client\ClientInterface;
 
 class TinyPngPostProcessorTest extends TestCase

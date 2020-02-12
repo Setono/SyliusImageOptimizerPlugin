@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusOptimizeImagesPlugin\Imagine\Filter\PostProcessor;
+namespace Setono\SyliusImageOptimizerPlugin\Imagine\Filter\PostProcessor;
 
 use Liip\ImagineBundle\Binary\BinaryInterface;
 use Liip\ImagineBundle\Imagine\Filter\PostProcessor\PostProcessorInterface;
@@ -11,14 +11,9 @@ use Setono\TinyPngBundle\Client\ClientInterface as TinyPngClientInterface;
 
 class TinyPngPostProcessor implements PostProcessorInterface
 {
-    /**
-     * @var TinyPngClientInterface
-     */
+    /** @var TinyPngClientInterface */
     private $client;
 
-    /**
-     * @param TinyPngClientInterface $client
-     */
     public function __construct(TinyPngClientInterface $client)
     {
         $this->client = $client;
@@ -26,11 +21,6 @@ class TinyPngPostProcessor implements PostProcessorInterface
 
     /**
      * This method takes the binary, passes it to TinyPNG through the TinyPNG bundle and returns a new binary with the compressed image string
-     *
-     * @param BinaryInterface $binary
-     * @param array $options
-     *
-     * @return BinaryInterface
      */
     public function process(BinaryInterface $binary, array $options = []): BinaryInterface
     {

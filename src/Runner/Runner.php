@@ -2,49 +2,32 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusOptimizeImagesPlugin\Runner;
+namespace Setono\SyliusImageOptimizerPlugin\Runner;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Liip\ImagineBundle\Imagine\Cache\Resolver\ResolverInterface;
-use Setono\SyliusOptimizeImagesPlugin\Resolver\FilterSetsResolverInterface;
-use Setono\SyliusOptimizeImagesPlugin\Resolver\ResourcesResolverInterface;
-use Setono\SyliusOptimizeImagesPlugin\Storer\StorerInterface;
+use Setono\SyliusImageOptimizerPlugin\Resolver\FilterSetsResolverInterface;
+use Setono\SyliusImageOptimizerPlugin\Resolver\ResourcesResolverInterface;
+use Setono\SyliusImageOptimizerPlugin\Storer\StorerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 final class Runner implements RunnerInterface
 {
-    /**
-     * @var ContainerInterface
-     */
+    /** @var ContainerInterface */
     private $container;
 
-    /**
-     * @var ResourcesResolverInterface
-     */
+    /** @var ResourcesResolverInterface */
     private $resourcesResolver;
 
-    /**
-     * @var FilterSetsResolverInterface
-     */
+    /** @var FilterSetsResolverInterface */
     private $filterSetsResolver;
 
-    /**
-     * @var ResolverInterface
-     */
+    /** @var ResolverInterface */
     private $cacheResolver;
 
-    /**
-     * @var StorerInterface
-     */
+    /** @var StorerInterface */
     private $storer;
 
-    /**
-     * @param ContainerInterface $container
-     * @param ResourcesResolverInterface $resourcesResolver
-     * @param FilterSetsResolverInterface $filterSetsResolver
-     * @param ResolverInterface $cacheResolver
-     * @param StorerInterface $storer
-     */
     public function __construct(
         ContainerInterface $container,
         ResourcesResolverInterface $resourcesResolver,

@@ -2,20 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusOptimizeImagesPlugin\Storer;
+namespace Setono\SyliusImageOptimizerPlugin\Storer;
 
 use Liip\ImagineBundle\Service\FilterService;
 
 class SyncStorer implements StorerInterface
 {
-    /**
-     * @var FilterService
-     */
+    /** @var FilterService */
     private $filterService;
 
-    /**
-     * @param FilterService $filterService
-     */
     public function __construct(FilterService $filterService)
     {
         $this->filterService = $filterService;

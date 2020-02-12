@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusOptimizeImagesPlugin\DependencyInjection;
+namespace Setono\SyliusImageOptimizerPlugin\DependencyInjection;
 
 use Sylius\Component\Core\Model\ImageInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusOptimizeImagesPlugin\DependencyInjection;
+namespace Tests\Setono\SyliusImageOptimizerPlugin\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
-use Setono\SyliusOptimizeImagesPlugin\DependencyInjection\SetonoSyliusOptimizeImagesExtension;
+use Setono\SyliusImageOptimizerPlugin\DependencyInjection\SetonoSyliusImageOptimizerExtension;
 
-final class SetonoSyliusOptimizeImagesExtensionTest extends AbstractExtensionTestCase
+final class SetonoSyliusImageOptimizerExtensionTest extends AbstractExtensionTestCase
 {
     protected function getContainerExtensions()
     {
-        return [new SetonoSyliusOptimizeImagesExtension()];
+        return [new SetonoSyliusImageOptimizerExtension()];
     }
 
     /**

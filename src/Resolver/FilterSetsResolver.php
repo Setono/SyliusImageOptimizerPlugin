@@ -2,24 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusOptimizeImagesPlugin\Resolver;
+namespace Setono\SyliusImageOptimizerPlugin\Resolver;
 
 use Liip\ImagineBundle\Imagine\Filter\FilterConfiguration;
 
 class FilterSetsResolver implements FilterSetsResolverInterface
 {
-    /**
-     * @var FilterConfiguration
-     */
+    /** @var FilterConfiguration */
     private $filterConfiguration;
 
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private $filterSetsConfig;
 
     /**
-     * @param FilterConfiguration $filterConfiguration
      * @param array $filterSetsConfig The bundle's filter set config
      */
     public function __construct(FilterConfiguration $filterConfiguration, array $filterSetsConfig)

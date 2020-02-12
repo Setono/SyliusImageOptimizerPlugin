@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusOptimizeImagesPlugin\Resolver;
+namespace Setono\SyliusImageOptimizerPlugin\Resolver;
 
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Resource\Metadata\MetadataInterface;
@@ -10,18 +10,13 @@ use Sylius\Component\Resource\Metadata\RegistryInterface;
 
 class ResourcesResolver implements ResourcesResolverInterface
 {
-    /**
-     * @var RegistryInterface
-     */
+    /** @var RegistryInterface */
     private $registry;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $resourcesConfig;
 
     /**
-     * @param RegistryInterface $registry
      * @param array $resourcesConfig The bundle's resources config
      */
     public function __construct(RegistryInterface $registry, array $resourcesConfig)
@@ -65,10 +60,6 @@ class ResourcesResolver implements ResourcesResolverInterface
 
     /**
      * Returns true if the resource's model implements the interface Sylius\Component\Core\Model\ImageInterface
-     *
-     * @param MetadataInterface $resource
-     *
-     * @return bool
      */
     private function implementsImageInterface(MetadataInterface $resource): bool
     {

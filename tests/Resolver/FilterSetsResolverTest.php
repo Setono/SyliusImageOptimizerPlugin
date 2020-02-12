@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusOptimizeImagesPlugin\Resolver;
+namespace Tests\Setono\SyliusImageOptimizerPlugin\Resolver;
 
 use Liip\ImagineBundle\Imagine\Filter\FilterConfiguration;
-use Setono\SyliusOptimizeImagesPlugin\Resolver\FilterSetsResolver;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Setono\SyliusImageOptimizerPlugin\Resolver\FilterSetsResolver;
 
 class FilterSetsResolverTest extends TestCase
 {

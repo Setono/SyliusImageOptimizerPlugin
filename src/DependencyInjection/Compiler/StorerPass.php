@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusOptimizeImagesPlugin\DependencyInjection\Compiler;
+namespace Setono\SyliusImageOptimizerPlugin\DependencyInjection\Compiler;
 
-use Setono\SyliusOptimizeImagesPlugin\Storer\AsyncStorer;
-use Setono\SyliusOptimizeImagesPlugin\Storer\StorerInterface;
+use Setono\SyliusImageOptimizerPlugin\Storer\AsyncStorer;
+use Setono\SyliusImageOptimizerPlugin\Storer\StorerInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -30,10 +30,6 @@ final class StorerPass implements CompilerPassInterface
 
     /**
      * Will return true if the enqueue and liip imagine bundles are enabled AND the enqueue option is enabled
-     *
-     * @param ContainerBuilder $container
-     *
-     * @return bool
      */
     private function isEnqueueEnabled(ContainerBuilder $container): bool
     {

@@ -1,4 +1,4 @@
-# Sylius Optimize Images Plugin
+# Sylius Image Optimizer Plugin
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
@@ -41,7 +41,7 @@ final class AppKernel extends Kernel
     {
         return array_merge(parent::registerBundles(), [
             // ...
-            new \Setono\SyliusOptimizeImagesPlugin\SetonoSyliusOptimizeImagesPlugin(),
+            new \Setono\SyliusImageOptimizerPlugin\SetonoSyliusImageOptimizerPlugin(),
             // ...
         ]);
     }
