@@ -59,15 +59,14 @@ You can limit both the resources and the filter sets optimized:
 ```yaml
 # app/config/config.yml
 
-setono_sylius_optimize_images:
-    resources:
-        - sylius.product_image
-    filter_sets:
-        - sylius_shop_product_large_thumbnail
-        - sylius_shop_product_thumbnail
-        - sylius_shop_product_small_thumbnail
-        - sylius_shop_product_tiny_thumbnail
-        - sylius_shop_product_original
+setono_sylius_image_optimizer:
+    image_resources:
+        sylius.product_image:
+            - sylius_shop_product_large_thumbnail
+            - sylius_shop_product_thumbnail
+            - sylius_shop_product_small_thumbnail
+            - sylius_shop_product_tiny_thumbnail
+            - sylius_shop_product_original
 ```
 
 ### Step 5: Enable asynchronously processing (optional)

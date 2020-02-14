@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono_sylius_image_optimizer.message.handler.optimize_configured_image_resources"
+                 class="Setono\SyliusImageOptimizerPlugin\Message\Handler\OptimizeConfiguredImageResourcesHandler">
+            <argument type="service" id="setono_sylius_image_optimizer.command_bus"/>
+            <argument>%setono.sylius_image_optimizer.image_resources%</argument>
+
+            <tag name="messenger.message_handler"/>
+        </service>
+
+        <service id="setono_sylius_image_optimizer.message.handler.optimize_image_resource"
+                 class="Setono\SyliusImageOptimizerPlugin\Message\Handler\OptimizeImageResourceHandler">
+            <argument type="service" id="doctrine"/>
+            <argument type="service" id="sylius.resource_registry"/>
+            <argument type="service" id="setono_doctrine_orm_batcher.factory.batcher"/>
+            <argument type="service" id="setono_sylius_image_optimizer.command_bus"/>
+
+            <tag name="messenger.message_handler"/>
+        </service>
+
+        <service id="setono_sylius_image_optimizer.message.handler.optimize_image_batch"
+                 class="Setono\SyliusImageOptimizerPlugin\Message\Handler\OptimizeImageBatchHandler">
+            <argument type="service" id="setono_doctrine_orm_batcher.query.rebuilder"/>
+            <argument type="service" id="setono_sylius_image_optimizer.command_bus"/>
+
+            <tag name="messenger.message_handler"/>
+        </service>
+
+        <service id="setono_sylius_image_optimizer.message.handler.optimize_image"
+                 class="Setono\SyliusImageOptimizerPlugin\Message\Handler\OptimizeImageHandler">
+            <argument type="service" id="setono_sylius_image_optimizer.optimizer"/>
+            <argument type="service" id="doctrine"/>
+            <argument type="service" id="liip_imagine.cache.manager"/>
+            <argument type="service" id="setono_sylius_image_optimizer.factory.image_file"/>
+
+            <tag name="messenger.message_handler"/>
+        </service>
+    </services>
+</container>

@@ -4,39 +4,36 @@ declare(strict_types=1);
 
 namespace Setono\SyliusImageOptimizerPlugin\Command;
 
-use Setono\SyliusImageOptimizerPlugin\Runner\RunnerInterface;
+use Setono\SyliusImageOptimizerPlugin\Message\Command\OptimizeConfiguredImageResources;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 
-class OptimizeCommand extends Command
+final class OptimizeCommand extends Command
 {
-    /** @var RunnerInterface */
-    private $runner;
+    /** @var string */
+    protected static $defaultName = 'setono:sylius-image-optimizer:optimize';
 
-    public function __construct(RunnerInterface $runner)
+    /** @var MessageBusInterface */
+    private $commandBus;
+
+    public function __construct(MessageBusInterface $commandBus)
     {
         parent::__construct();
 
-        $this->runner = $runner;
+        $this->commandBus = $commandBus;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure(): void
     {
-        $this
-            ->setName('setono:sylius-optimize-images:optimize')
-            ->setDescription('This command will optimize your images')
-        ;
+        $this->setDescription('This command will trigger the optimization of your configured image resources');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->runner->run();
+        $this->commandBus->dispatch(new OptimizeConfiguredImageResources());
+
+        return 0;
     }
 }

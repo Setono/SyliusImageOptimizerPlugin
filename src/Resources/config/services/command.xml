@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono_sylius_image_optimizer.command.optimize_command"
+                 class="Setono\SyliusImageOptimizerPlugin\Command\OptimizeCommand">
+            <argument type="service" id="setono_sylius_image_optimizer.command_bus"/>
+            <tag name="console.command"/>
+        </service>
+
+        <service id="setono_sylius_image_optimizer.command.optimizable_resources_command"
+                 class="Setono\SyliusImageOptimizerPlugin\Command\OptimizableResourcesCommand">
+            <argument>%sylius.resources%</argument>
+            <tag name="console.command"/>
+        </service>
+    </services>
+</container>

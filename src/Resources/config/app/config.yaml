@@ -1,0 +1,4 @@
+framework:
+    messenger:
+        buses:
+            setono_sylius_image_optimizer.command_bus: ~

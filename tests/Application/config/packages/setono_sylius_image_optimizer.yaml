@@ -1,0 +1,10 @@
+imports:
+    - { resource: "@SetonoSyliusImageOptimizerPlugin/Resources/config/app/config.yaml" }
+
+setono_sylius_image_optimizer:
+    image_resources:
+        sylius.product_image:
+            - "sylius_shop_product_large_thumbnail"
+    kraken:
+        key: "%env(resolve:KRAKEN_API_KEY)%"
+        secret: "%env(resolve:KRAKEN_API_SECRET)%"

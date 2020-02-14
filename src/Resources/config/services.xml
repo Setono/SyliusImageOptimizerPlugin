@@ -1,42 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <services>
-        <!-- Aliases -->
-        <service id="Setono\SyliusImageOptimizerPlugin\Runner\RunnerInterface" alias="setono.sylius_optimize_images.runner.default" />
-        <service id="Setono\SyliusImageOptimizerPlugin\Resolver\ResourcesResolverInterface" alias="setono.sylius_optimize_images.resolver.resources_resolver" />
-        <service id="Setono\SyliusImageOptimizerPlugin\Resolver\FilterSetsResolverInterface" alias="setono.sylius_optimize_images.resolver.filter_sets_resolver" />
-
-        <service id="setono.sylius_optimize_images.command.optimize_command" class="Setono\SyliusImageOptimizerPlugin\Command\OptimizeCommand">
-            <argument type="service" id="Setono\SyliusImageOptimizerPlugin\Runner\RunnerInterface" />
-            <tag name="console.command" />
-        </service>
-
-        <service id="Setono\SyliusImageOptimizerPlugin\Imagine\Filter\PostProcessor\TinyPngPostProcessor">
-            <argument type="service" id="Setono\TinyPngBundle\Client\ClientInterface" />
-            <tag name="liip_imagine.filter.post_processor" post_processor="tiny_png_post_processor" />
-        </service>
-
-        <service id="setono.sylius_optimize_images.runner.default" class="Setono\SyliusImageOptimizerPlugin\Runner\Runner">
-            <argument type="service" id="service_container" />
-            <argument type="service" id="Setono\SyliusImageOptimizerPlugin\Resolver\ResourcesResolverInterface" />
-            <argument type="service" id="Setono\SyliusImageOptimizerPlugin\Resolver\FilterSetsResolverInterface" />
-            <argument type="service" id="liip_imagine.cache.resolver.default" />
-            <argument type="service" id="Setono\SyliusImageOptimizerPlugin\Storer\StorerInterface" />
-        </service>
-
-        <service id="setono.sylius_optimize_images.storer.sync_storer" class="Setono\SyliusImageOptimizerPlugin\Storer\SyncStorer">
-            <argument type="service" id="liip_imagine.service.filter" />
-        </service>
-
-        <service id="setono.sylius_optimize_images.resolver.filter_sets_resolver" class="Setono\SyliusImageOptimizerPlugin\Resolver\FilterSetsResolver">
-            <argument type="service" id="liip_imagine.filter.configuration" />
-            <argument>%setono.sylius_optimize_images.filter_sets%</argument>
-        </service>
-
-        <service id="setono.sylius_optimize_images.resolver.resources_resolver" class="Setono\SyliusImageOptimizerPlugin\Resolver\ResourcesResolver">
-            <argument type="service" id="sylius.resource_registry" />
-            <argument>%setono.sylius_optimize_images.resources%</argument>
-        </service>
-    </services>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <imports>
+        <import resource="services/command.xml"/>
+        <import resource="services/event_listener.xml"/>
+        <import resource="services/factory.xml"/>
+        <import resource="services/message.xml"/>
+        <import resource="services/optimizer.xml"/>
+        <import resource="services/integrations/kraken.xml"/>
+    </imports>
 </container>
