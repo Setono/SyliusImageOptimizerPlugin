@@ -4,7 +4,10 @@
            xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_image_optimizer.factory.image_file"
-                 class="Setono\SyliusImageOptimizerPlugin\Factory\ImageFileFactory"/>
+        <service id="setono_sylius_image_optimizer.writer.optimized_image"
+                 class="Setono\SyliusImageOptimizerPlugin\Writer\OptimizedImageWriter">
+            <argument type="service" id="liip_imagine.cache.manager"/>
+            <argument type="service" id="mime_types"/>
+        </service>
     </services>
 </container>

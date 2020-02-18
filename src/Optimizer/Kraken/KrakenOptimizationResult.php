@@ -4,25 +4,39 @@ declare(strict_types=1);
 
 namespace Setono\SyliusImageOptimizerPlugin\Optimizer\Kraken;
 
+use function Safe\file_get_contents;
 use Setono\SyliusImageOptimizerPlugin\Optimizer\OptimizationResultInterface;
+use SplFileInfo;
+use Webimpress\SafeWriter\FileWriter;
 
 final class KrakenOptimizationResult implements OptimizationResultInterface
 {
+    /** @var SplFileInfo */
+    private $file;
+
     /** @var int */
     private $originalSize;
 
     /** @var int */
     private $optimizedSize;
 
-    private function __construct(int $originalSize, int $optimizedSize)
+    /** @var string */
+    private $url;
+
+    /** @var bool */
+    private $webP;
+
+    private function __construct(int $originalSize, int $optimizedSize, string $url, bool $webP)
     {
         $this->originalSize = $originalSize;
         $this->optimizedSize = $optimizedSize;
+        $this->url = $url;
+        $this->webP = $webP;
     }
 
-    public static function createFromResponse(array $response): self
+    public static function createFromResponse(array $response, bool $webP): self
     {
-        return new self($response['original_size'], $response['kraked_size']);
+        return new self($response['original_size'], $response['kraked_size'], $response['kraked_url'], $webP);
     }
 
     public function getOriginalSize(): int
@@ -38,5 +52,25 @@ final class KrakenOptimizationResult implements OptimizationResultInterface
     public function getSavedBytes(): int
     {
         return $this->getOriginalSize() - $this->getOptimizedSize();
+    }
+
+    public function getFile(): SplFileInfo
+    {
+        if (null === $this->file) {
+            do {
+                $filename = sys_get_temp_dir() . '/' . uniqid('optimized-image-file-', true);
+            } while (file_exists($filename));
+
+            FileWriter::writeFile($filename, file_get_contents($this->url));
+
+            $this->file = new SplFileInfo($filename);
+        }
+
+        return $this->file;
+    }
+
+    public function isWebP(): bool
+    {
+        return $this->webP;
     }
 }

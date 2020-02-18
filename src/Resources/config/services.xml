@@ -3,11 +3,13 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <imports>
+        <import resource="services/cache_manager.xml"/>
         <import resource="services/command.xml"/>
         <import resource="services/event_listener.xml"/>
         <import resource="services/factory.xml"/>
         <import resource="services/message.xml"/>
         <import resource="services/optimizer.xml"/>
+        <import resource="services/writer.xml"/>
         <import resource="services/integrations/kraken.xml"/>
     </imports>
 </container>

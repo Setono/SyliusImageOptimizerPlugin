@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusImageOptimizerPlugin\Command;
 
+use function Safe\sprintf;
 use Sylius\Component\Core\Model\ImageInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -45,6 +46,12 @@ final class OptimizableResourcesCommand extends Command
             }
 
             $optimizableResources[] = $resource;
+        }
+
+        if (count($optimizableResources) === 0) {
+            $io->warning(sprintf('No resources implement the interface %s', ImageInterface::class));
+
+            return 0;
         }
 
         $io->section('Optimizable resources');

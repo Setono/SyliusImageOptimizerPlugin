@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusImageOptimizerPlugin;
 
+use Setono\SyliusImageOptimizerPlugin\DependencyInjection\Compiler\ConfigureNgrokAwareImageFileFactoryPass;
+use Setono\SyliusImageOptimizerPlugin\DependencyInjection\Compiler\ResolversCompilerPass;
 use Setono\SyliusImageOptimizerPlugin\DependencyInjection\Compiler\ValidateFilterSetsPass;
 use Setono\SyliusImageOptimizerPlugin\DependencyInjection\Compiler\ValidateImageResourcesPass;
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
@@ -20,5 +22,7 @@ final class SetonoSyliusImageOptimizerPlugin extends Bundle
 
         $container->addCompilerPass(new ValidateImageResourcesPass());
         $container->addCompilerPass(new ValidateFilterSetsPass());
+        $container->addCompilerPass(new ConfigureNgrokAwareImageFileFactoryPass());
+        $container->addCompilerPass(new ResolversCompilerPass());
     }
 }

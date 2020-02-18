@@ -5,26 +5,22 @@
 [![Build Status][ico-travis]][link-travis]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
-Optimize your images using [TinyPNG](https://tinypng.com/).
+Optimize the images in your Sylius store!
 
 ## Installation
 
-### Step 1: Download TinyPNG bundle
-
-Follow the [installation instructions for the TinyPNG bundle](https://github.com/Setono/TinyPngBundle).
-
-### Step 2: Download the plugin
+### Step 1: Download the plugin
 
 Open a command console, enter your project directory and execute the following command to download the latest stable version of this plugin:
 
 ```bash
-$ composer require setono/sylius-optimize-images-plugin
+$ composer require setono/sylius-image-optimizer-plugin
 ```
 
 This command requires you to have Composer installed globally, as explained in the [installation chapter](https://getcomposer.org/doc/00-intro.md) of the Composer documentation.
 
 
-### Step 3: Enable the plugin
+### Step 2: Enable the plugin
 
 Then, enable the plugin by adding it to the list of registered plugins/bundles
 in the `app/AppKernel.php` file of your project:
@@ -57,7 +53,7 @@ By default, this plugin will optimize all images which are resources implementin
 You can limit both the resources and the filter sets optimized:
 
 ```yaml
-# app/config/config.yml
+# config/packages/setono_sylius_image_optimizer.yaml
 
 setono_sylius_image_optimizer:
     image_resources:
@@ -69,14 +65,25 @@ setono_sylius_image_optimizer:
             - sylius_shop_product_original
 ```
 
-### Step 5: Enable asynchronously processing (optional)
+### Step 5: Configure Symfony Messenger
 
-The default Sylius shop will process images on demand. Using this plugin means that images will be sent to TinyPNG and back on demand. This can take quite some time, therefore it is highly recommended to enable the [async processing of images](https://symfony.com/doc/2.0/bundles/LiipImagineBundle/resolve-cache-images-in-background.html).
+If you haven't used [Symfony Messenger](https://symfony.com/doc/current/messenger.html) before, you need to specify a default bus like so:
 
-If you enable that, all you need to do is run the optimize command:
-```bash
-$ php bin/console setono:sylius-optimize-images:optimize
+```yaml
+# config/packages/messenger.yaml
+
+framework:
+    messenger:
+        default_bus: setono_sylius_image_optimizer.command_bus
 ```
+
+## Testing
+
+If you want to test this plugin you can setup [ngrok](https://ngrok.com) to tunnel requests to your localhost:
+
+1. [Download and install](https://ngrok.com/download) ngrok
+2. Run your local web server: `symfony serve --allow-http` (the `allow-http` is important since ngrok always tunnels to the non secure localhost)
+3. Run ngrok: `ngrok http 8000`
 
 [ico-version]: https://img.shields.io/packagist/v/setono/sylius-optimize-images-plugin.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square

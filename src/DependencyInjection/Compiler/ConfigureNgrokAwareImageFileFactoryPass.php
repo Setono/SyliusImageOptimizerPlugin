@@ -8,7 +8,12 @@ use Setono\SyliusImageOptimizerPlugin\Factory\NgrokAwareImageFileFactory;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
+/**
+ * This compiler pass will allow you to test the plugin on your localhost by running ngrok (https://ngrok.com)
+ * and pointing the tunnel to your localhost
+ */
 final class ConfigureNgrokAwareImageFileFactoryPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
@@ -17,10 +22,16 @@ final class ConfigureNgrokAwareImageFileFactoryPass implements CompilerPassInter
             return;
         }
 
-        if($container->getParameter('kernel.environment') !== 'dev' || $container->getParameter('kernel.debug') !== true) {
+        if ($container->getParameter('kernel.environment') !== 'dev' || $container->getParameter('kernel.debug') !== true) {
             return;
         }
 
-        $definition = new Definition(NgrokAwareImageFileFactory::class);
+        $definition = new Definition(NgrokAwareImageFileFactory::class, [
+            new Reference('setono_sylius_image_optimizer.factory.ngrok_aware_image_file.inner'),
+            new Reference('http_client'),
+        ]);
+        $definition->setDecoratedService('setono_sylius_image_optimizer.factory.image_file');
+
+        $container->setDefinition('setono_sylius_image_optimizer.factory.ngrok_aware_image_file', $definition);
     }
 }

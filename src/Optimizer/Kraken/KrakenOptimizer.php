@@ -7,9 +7,9 @@ namespace Setono\SyliusImageOptimizerPlugin\Optimizer\Kraken;
 use Kraken;
 use Setono\SyliusImageOptimizerPlugin\ImageFile\ImageFile;
 use Setono\SyliusImageOptimizerPlugin\Optimizer\OptimizationResultInterface;
-use Setono\SyliusImageOptimizerPlugin\Optimizer\OptimizerInterface;
+use Setono\SyliusImageOptimizerPlugin\Optimizer\WebPOptimizerInterface;
 
-final class KrakenOptimizer implements OptimizerInterface
+final class KrakenOptimizer implements WebPOptimizerInterface
 {
     /** @var Kraken */
     private $kraken;
@@ -21,16 +21,28 @@ final class KrakenOptimizer implements OptimizerInterface
 
     public function optimize(ImageFile $imageFile): OptimizationResultInterface
     {
-        dump($imageFile->getUrl());
-        $data = $this->kraken->url([
+        return $this->_optimize($imageFile, false);
+    }
+
+    public function optimizeAndConvertToWebP(ImageFile $imageFile): OptimizationResultInterface
+    {
+        return $this->_optimize($imageFile, true);
+    }
+
+    private function _optimize(ImageFile $imageFile, bool $webP): OptimizationResultInterface
+    {
+        $params = [
             'url' => $imageFile->getUrl(),
             'wait' => true,
             'lossy' => true,
-            'webp' => true,
-        ]);
+        ];
 
-        dump($data);
+        if ($webP) {
+            $params['webp'] = true;
+        }
 
-        return KrakenOptimizationResult::createFromResponse($data);
+        $data = $this->kraken->url($params);
+
+        return KrakenOptimizationResult::createFromResponse($data, $webP);
     }
 }

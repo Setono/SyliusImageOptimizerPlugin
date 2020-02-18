@@ -4,6 +4,10 @@ imports:
 setono_sylius_image_optimizer:
     image_resources:
         sylius.product_image:
+            - "sylius_shop_product_original"
+            - "sylius_shop_product_tiny_thumbnail"
+            - "sylius_shop_product_small_thumbnail"
+            - "sylius_shop_product_thumbnail"
             - "sylius_shop_product_large_thumbnail"
     kraken:
         key: "%env(resolve:KRAKEN_API_KEY)%"

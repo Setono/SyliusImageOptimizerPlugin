@@ -38,7 +38,6 @@ final class NgrokAwareImageFileFactory implements ImageFileFactoryInterface
 
             return new ImageFile($ngrokUrl . parse_url($url, PHP_URL_PATH));
         } catch (ExceptionInterface $e) {
-            dump($e->getMessage());
             // no matter what exception we get from the http client
             // we will just fallback to the decorated image file factory
             return $this->decoratedImageFileFactory->createFromUrl($url);

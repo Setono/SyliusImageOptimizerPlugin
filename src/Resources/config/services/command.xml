@@ -15,5 +15,11 @@
             <argument>%sylius.resources%</argument>
             <tag name="console.command"/>
         </service>
+
+        <service id="setono_sylius_image_optimizer.command.configured_filter_sets"
+                 class="Setono\SyliusImageOptimizerPlugin\Command\ConfiguredFilterSetsCommand">
+            <argument>%liip_imagine.filter_sets%</argument>
+            <tag name="console.command"/>
+        </service>
     </services>
 </container>
