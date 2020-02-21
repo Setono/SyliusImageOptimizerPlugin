@@ -8,6 +8,10 @@
 
 Optimize the images in your Sylius store! Works only with [kraken.io](https://kraken.io) at the moment, but will work with other vendors in the future.
 
+Have you seen this message from Google page speed tools: ["Serve images in next-gen formats"](https://web.dev/uses-webp-images/), this is the plugin to use.
+
+It will **both** optimize your jpegs, but also convert them to webp and serve the webp images to browsers that [support webp](https://developers.google.com/speed/webp/faq#which_web_browsers_natively_support_webp) (i.e. Chrome).
+
 ## Installation
 
 ### Step 1: Download the plugin
@@ -43,6 +47,8 @@ return [
 Add the resources (image resources) that should be optimized. In the example below a product image is optimized and the
 filter sets that are optimized are the default frontend filter sets for products.
 
+This is also the step where you need your API key and secret from [kraken.io](https://kraken.io).
+
 ```yaml
 # config/packages/setono_sylius_image_optimizer.yaml
 imports:
@@ -56,6 +62,9 @@ setono_sylius_image_optimizer:
             - sylius_shop_product_small_thumbnail
             - sylius_shop_product_tiny_thumbnail
             - sylius_shop_product_original
+        kraken:
+            key: "%env(resolve:KRAKEN_API_KEY)%"
+            secret: "%env(resolve:KRAKEN_API_SECRET)%"
 ```
 
 ### Step 4: Configure Symfony Messenger
