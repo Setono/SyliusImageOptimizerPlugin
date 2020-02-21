@@ -70,6 +70,59 @@ framework:
         default_bus: setono_sylius_image_optimizer.command_bus
 ```
 
+### Step 5: Extend image resources
+
+The following example is for the product images. You should follow this procedure for all image resources you want to optimize.
+
+```php
+<?php
+// src/Entity/Product/ProductImage.php
+declare(strict_types=1);
+
+namespace App\Entity\Product;
+
+use Doctrine\ORM\Mapping as ORM;
+use Setono\SyliusImageOptimizerPlugin\Model\OptimizableInterface;
+use Setono\SyliusImageOptimizerPlugin\Model\OptimizableTrait;
+use Sylius\Component\Core\Model\ProductImage as BaseProductImage;
+
+/**
+ * @ORM\Table(name="sylius_product_image")
+ * @ORM\Entity()
+ */
+final class ProductImage extends BaseProductImage implements OptimizableInterface
+{
+    use OptimizableTrait;
+}
+```
+
+```yaml
+# config/packages/_sylius.yaml
+
+sylius_core:
+    resources:
+        product_image:
+            classes:
+                model: App\Entity\Product\ProductImage
+```
+
+### Step 6: Update database
+
+Last step is to create a diff for your current database schema and migrate that schema.
+
+```
+$ php bin/console doctrine:migrations:diff
+$ php bin/console doctrine:migrations:migrate
+```
+
+## Usage
+
+Now run this command to optimize your images:
+
+```
+$ php bin/console setono:sylius-image-optimizer:optimize
+```
+
 ## Testing
 
 If you want to test this plugin you can setup [ngrok](https://ngrok.com) to tunnel requests to your localhost:
