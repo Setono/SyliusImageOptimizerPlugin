@@ -34,7 +34,7 @@
                  class="Setono\SyliusImageOptimizerPlugin\Message\Handler\OptimizeImageHandler">
             <argument type="service" id="setono_sylius_image_optimizer.optimizer"/>
             <argument type="service" id="doctrine"/>
-            <argument type="service" id="liip_imagine.cache.manager"/>
+            <argument type="service" id="liip_imagine.service.filter"/>
             <argument type="service" id="setono_sylius_image_optimizer.writer.optimized_image"/>
             <argument type="service" id="setono_sylius_image_optimizer.factory.image_file"/>
             <argument type="service" id="setono_sylius_image_optimizer.event_bus"/>

@@ -7,7 +7,7 @@ namespace Setono\SyliusImageOptimizerPlugin\Message\Handler;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use Liip\ImagineBundle\Service\FilterService;
 use function Safe\sprintf;
 use Setono\SyliusImageOptimizerPlugin\Factory\ImageFileFactoryInterface;
 use Setono\SyliusImageOptimizerPlugin\ImageFile\ImageFile;
@@ -34,8 +34,8 @@ final class OptimizeImageHandler implements MessageHandlerInterface
     /** @var ManagerRegistry */
     private $managerRegistry;
 
-    /** @var CacheManager */
-    private $cacheManager;
+    /** @var FilterService */
+    private $filterService;
 
     /** @var OptimizedImageWriterInterface */
     private $optimizedImageWriter;
@@ -49,14 +49,14 @@ final class OptimizeImageHandler implements MessageHandlerInterface
     public function __construct(
         OptimizerInterface $optimizer,
         ManagerRegistry $managerRegistry,
-        CacheManager $cacheManager,
+        FilterService $filterService,
         OptimizedImageWriterInterface $optimizedImageWriter,
         ImageFileFactoryInterface $imageFileFactory,
         MessageBusInterface $eventBus
     ) {
         $this->optimizer = $optimizer;
         $this->managerRegistry = $managerRegistry;
-        $this->cacheManager = $cacheManager;
+        $this->filterService = $filterService;
         $this->optimizedImageWriter = $optimizedImageWriter;
         $this->imageFileFactory = $imageFileFactory;
         $this->eventBus = $eventBus;
@@ -74,7 +74,7 @@ final class OptimizeImageHandler implements MessageHandlerInterface
         }
 
         foreach ($message->getFilterSets() as $filterSet) {
-            $url = $this->cacheManager->getBrowserPath($message->getPath(), $filterSet);
+            $url = $this->filterService->getUrlOfFilteredImage($message->getPath(), $filterSet);
             $imageFile = $this->imageFileFactory->createFromUrl($url);
 
             $result = $this->optimizer->optimize($imageFile);
