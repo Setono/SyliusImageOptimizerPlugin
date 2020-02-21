@@ -1,89 +1,89 @@
 # Sylius Image Optimizer Plugin
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Latest Version][ico-version]][link-packagist]
+[![Latest Unstable Version][ico-unstable-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
-[![Build Status][ico-travis]][link-travis]
+[![Build Status][ico-github-actions]][link-github-actions]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
-Optimize your images using [TinyPNG](https://tinypng.com/).
+Optimize the images in your Sylius store! Works only with [kraken.io](https://kraken.io) at the moment, but will work with other vendors in the future.
 
 ## Installation
 
-### Step 1: Download TinyPNG bundle
-
-Follow the [installation instructions for the TinyPNG bundle](https://github.com/Setono/TinyPngBundle).
-
-### Step 2: Download the plugin
+### Step 1: Download the plugin
 
 Open a command console, enter your project directory and execute the following command to download the latest stable version of this plugin:
 
 ```bash
-$ composer require setono/sylius-optimize-images-plugin
+$ composer require setono/sylius-image-optimizer-plugin
 ```
 
 This command requires you to have Composer installed globally, as explained in the [installation chapter](https://getcomposer.org/doc/00-intro.md) of the Composer documentation.
 
 
-### Step 3: Enable the plugin
+### Step 2: Enable the plugin
 
 Then, enable the plugin by adding it to the list of registered plugins/bundles
-in the `app/AppKernel.php` file of your project:
+in the `config/bundles.php` file of your project:
 
 ```php
 <?php
-// app/AppKernel.php
+# config/bundles.php
 
-use Sylius\Bundle\CoreBundle\Application\Kernel;
-
-final class AppKernel extends Kernel
-{
-    public function registerBundles(): array
-    {
-        return array_merge(parent::registerBundles(), [
-            // ...
-            new \Setono\SyliusImageOptimizerPlugin\SetonoSyliusImageOptimizerPlugin(),
-            // ...
-        ]);
-    }
-    
+return [
     // ...
-}
+    Setono\SyliusImageOptimizerPlugin\SetonoSyliusImageOptimizerPlugin::class => ['all' => true],
+    // ...
+];
+
 ```
 
-### Step 4: Configure the plugin (optional)
+### Step 3: Configure the plugin
 
-By default, this plugin will optimize all images which are resources implementing the `Sylius\Component\Core\Model\ImageInterface`.
-
-You can limit both the resources and the filter sets optimized:
+Add the resources (image resources) that should be optimized. In the example below a product image is optimized and the
+filter sets that are optimized are the default frontend filter sets for products.
 
 ```yaml
-# app/config/config.yml
+# config/packages/setono_sylius_image_optimizer.yaml
+imports:
+    - { resource: "@SetonoSyliusPickupPointPlugin/Resources/config/app/config.yaml" }
 
-setono_sylius_optimize_images:
-    resources:
-        - sylius.product_image
-    filter_sets:
-        - sylius_shop_product_large_thumbnail
-        - sylius_shop_product_thumbnail
-        - sylius_shop_product_small_thumbnail
-        - sylius_shop_product_tiny_thumbnail
-        - sylius_shop_product_original
+setono_sylius_image_optimizer:
+    image_resources:
+        sylius.product_image:
+            - sylius_shop_product_large_thumbnail
+            - sylius_shop_product_thumbnail
+            - sylius_shop_product_small_thumbnail
+            - sylius_shop_product_tiny_thumbnail
+            - sylius_shop_product_original
 ```
 
-### Step 5: Enable asynchronously processing (optional)
+### Step 4: Configure Symfony Messenger
 
-The default Sylius shop will process images on demand. Using this plugin means that images will be sent to TinyPNG and back on demand. This can take quite some time, therefore it is highly recommended to enable the [async processing of images](https://symfony.com/doc/2.0/bundles/LiipImagineBundle/resolve-cache-images-in-background.html).
+If you haven't used [Symfony Messenger](https://symfony.com/doc/current/messenger.html) before, you need to specify a default bus like so:
 
-If you enable that, all you need to do is run the optimize command:
-```bash
-$ php bin/console setono:sylius-optimize-images:optimize
+```yaml
+# config/packages/messenger.yaml
+
+framework:
+    messenger:
+        default_bus: setono_sylius_image_optimizer.command_bus
 ```
 
-[ico-version]: https://img.shields.io/packagist/v/setono/sylius-optimize-images-plugin.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/Setono/SyliusOptimizeImagesPlugin/master.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusOptimizeImagesPlugin.svg?style=flat-square
+## Testing
 
-[link-packagist]: https://packagist.org/packages/setono/sylius-optimize-images-plugin
-[link-travis]: https://travis-ci.org/Setono/SyliusOptimizeImagesPlugin
-[link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusOptimizeImagesPlugin
+If you want to test this plugin you can setup [ngrok](https://ngrok.com) to tunnel requests to your localhost:
+
+1. [Download and install](https://ngrok.com/download) ngrok
+2. Run your local web server: `symfony serve --allow-http` (the `allow-http` is important since ngrok always tunnels to the non secure localhost)
+3. Run ngrok: `ngrok http 8000`
+
+[ico-version]: https://poser.pugx.org/setono/sylius-image-optimizer-plugin/v/stable
+[ico-unstable-version]: https://poser.pugx.org/setono/sylius-image-optimizer-plugin/v/unstable
+[ico-license]: https://poser.pugx.org/setono/sylius-image-optimizer-plugin/license
+[ico-github-actions]: https://github.com/Setono/SyliusImageOptimizerPlugin/workflows/build/badge.svg
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusImageOptimizerPlugin.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/setono/sylius-image-optimizer-plugin
+[link-github-actions]: https://github.com/Setono/SyliusImageOptimizerPlugin/actions
+[link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusImageOptimizerPlugin

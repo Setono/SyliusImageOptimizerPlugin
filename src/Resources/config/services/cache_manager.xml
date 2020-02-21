@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono_sylius_image_optimizer.cache_manager"
+                 class="Setono\SyliusImageOptimizerPlugin\CacheManager\CacheManager"
+                 decorates="liip_imagine.cache.manager"
+                 decoration-priority="256" public="true">
+            <argument type="service" id="liip_imagine.filter.configuration"/>
+            <argument type="service" id="router"/>
+            <argument type="service" id="liip_imagine.cache.signer"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="request_stack"/>
+            <argument>%liip_imagine.cache.resolver.default%</argument>
+        </service>
+    </services>
+</container>

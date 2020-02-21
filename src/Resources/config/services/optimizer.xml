@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono_sylius_image_optimizer.optimizer" alias="setono_sylius_image_optimizer.optimizer.kraken"/>
+
+        <service id="setono_sylius_image_optimizer.optimizer.kraken"
+                 class="Setono\SyliusImageOptimizerPlugin\Optimizer\Kraken\KrakenOptimizer">
+            <argument type="service" id="setono_sylius_image_optimizer.client.kraken"/>
+            <argument type="service" id="gaufrette.sylius_image_filesystem"/>
+            <argument>%liip_imagine.filter_sets%</argument>
+        </service>
+    </services>
+</container>

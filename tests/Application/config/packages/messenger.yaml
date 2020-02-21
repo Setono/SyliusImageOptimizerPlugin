@@ -1,0 +1,3 @@
+framework:
+    messenger:
+        default_bus: setono_sylius_image_optimizer.command_bus
