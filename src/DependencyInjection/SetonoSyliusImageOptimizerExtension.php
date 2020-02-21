@@ -20,9 +20,9 @@ final class SetonoSyliusImageOptimizerExtension extends Extension
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
-        $container->setParameter('setono.sylius_image_optimizer.image_resources', $config['image_resources']);
-        $container->setParameter('setono.sylius_image_optimizer.kraken.key', $config['kraken']['key']);
-        $container->setParameter('setono.sylius_image_optimizer.kraken.secret', $config['kraken']['secret']);
+        $container->setParameter('setono_sylius_image_optimizer.image_resources', $config['image_resources']);
+        $container->setParameter('setono_sylius_image_optimizer.kraken.key', $config['kraken']['key']);
+        $container->setParameter('setono_sylius_image_optimizer.kraken.secret', $config['kraken']['secret']);
 
         $loader->load('services.xml');
     }

@@ -18,7 +18,7 @@ final class ValidateFilterSetsPass implements CompilerPassInterface
         }
 
         $configuredFilterSets = $container->getParameter('liip_imagine.filter_sets');
-        $configuredImageResources = $container->getParameter('setono.sylius_image_optimizer.image_resources');
+        $configuredImageResources = $container->getParameter('setono_sylius_image_optimizer.image_resources');
 
         foreach ($configuredImageResources as $imageResource => $filterSets) {
             foreach ($filterSets as $filterSet) {

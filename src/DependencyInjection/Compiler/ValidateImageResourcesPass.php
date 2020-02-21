@@ -19,7 +19,7 @@ final class ValidateImageResourcesPass implements CompilerPassInterface
             return;
         }
 
-        $configuredImageResources = $container->getParameter('setono.sylius_image_optimizer.image_resources');
+        $configuredImageResources = $container->getParameter('setono_sylius_image_optimizer.image_resources');
         $configuredResources = $container->getParameter('sylius.resources');
 
         foreach ($configuredImageResources as $imageResource => $filterSets) {

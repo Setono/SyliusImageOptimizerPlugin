@@ -7,7 +7,7 @@
         <service id="setono_sylius_image_optimizer.message.handler.optimize_configured_image_resources"
                  class="Setono\SyliusImageOptimizerPlugin\Message\Handler\OptimizeConfiguredImageResourcesHandler">
             <argument type="service" id="setono_sylius_image_optimizer.command_bus"/>
-            <argument>%setono.sylius_image_optimizer.image_resources%</argument>
+            <argument>%setono_sylius_image_optimizer.image_resources%</argument>
 
             <tag name="messenger.message_handler"/>
         </service>

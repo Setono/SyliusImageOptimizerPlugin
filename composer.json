@@ -27,6 +27,8 @@
         "kalessil/production-dependencies-guard": "dev-master",
         "korbeil/phpstan-generic-rules": "^0.2.2",
         "lakion/mink-debug-extension": "^1.2.3",
+        "matthiasnoback/symfony-config-test": "^4.1",
+        "matthiasnoback/symfony-dependency-injection-test": "^4.1",
         "phpspec/phpspec": "^5.1 || ^6.0",
         "phpstan/phpstan": "^0.12",
         "phpstan/phpstan-doctrine": "^0.12",
@@ -44,7 +46,14 @@
         "symfony/web-server-bundle": "^3.4 || ^4.1 || ^5.0",
         "thecodingmachine/phpstan-safe-rule": "^1.0@beta"
     },
-    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
     "autoload": {
         "psr-4": {
             "Setono\\SyliusImageOptimizerPlugin\\": "src/",
@@ -52,16 +61,11 @@
         }
     },
     "autoload-dev": {
-        "classmap": ["tests/Application/Kernel.php"]
+        "classmap": [
+            "tests/Application/Kernel.php"
+        ]
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
-    },
-    "config": {
-        "sort-packages": true
-    },
+    "prefer-stable": true,
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse -c phpstan.neon -l max src",
         "check-style": "vendor/bin/ecs check src/ tests/",
