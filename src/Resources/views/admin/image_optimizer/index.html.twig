@@ -1,0 +1,15 @@
+{% extends '@SyliusAdmin/layout.html.twig' %}
+
+{% import '@SyliusUi/Macro/headers.html.twig' as headers %}
+
+{% block title %}{{ 'setono_sylius_image_optimizer.ui.image_optimizer'|trans }} {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="ui stackable two column grid">
+        <div class="column">
+            {{ headers.default('setono_sylius_image_optimizer.ui.image_optimizer'|trans, 'chart line') }}
+        </div>
+    </div>
+
+{#    {% include '@SyliusAdmin/Crud/Create/_content.html.twig' %}#}
+{% endblock %}

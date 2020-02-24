@@ -61,7 +61,7 @@ final class OptimizeImageResourceHandler implements MessageHandlerInterface
         $batcher = $this->batcherFactory->createIdCollectionBatcher($qb);
 
         foreach ($batcher->getBatches() as $batch) {
-            $this->commandBus->dispatch(new OptimizeImageBatch($batch, $message->getFilterSets()));
+            $this->commandBus->dispatch(new OptimizeImageBatch($message->getImageResource(), $batch, $message->getFilterSets()));
         }
     }
 

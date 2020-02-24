@@ -1,0 +1,3 @@
+setono_sylius_image_optimizer:
+    ui:
+        image_optimizer: Image optimizer

@@ -1,0 +1,3 @@
+setono_sylius_image_optimizer_admin:
+    resource: "@SetonoSyliusImageOptimizerPlugin/Resources/config/routes/admin.yaml"
+    prefix: /admin

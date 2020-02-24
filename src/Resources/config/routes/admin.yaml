@@ -1,0 +1,7 @@
+setono_sylius_image_optimizer_admin_image_optimizer_index:
+    path: /image-optimizer
+    methods: [GET]
+    defaults:
+        _controller: setono_sylius_image_optimizer.controller.action.image_optimizer_index
+        _sylius:
+            section: admin

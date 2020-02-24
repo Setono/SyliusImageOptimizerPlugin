@@ -67,6 +67,12 @@ setono_sylius_image_optimizer:
             secret: "%env(resolve:KRAKEN_API_SECRET)%"
 ```
 
+```yaml
+# config/routes/setono_sylius_image_optimizer.yaml
+setono_sylius_image_optimizer:
+    resource: "@SetonoSyliusImageOptimizerPlugin/Resources/config/routes.yaml"
+```
+
 ### Step 4: Configure Symfony Messenger
 
 If you haven't used [Symfony Messenger](https://symfony.com/doc/current/messenger.html) before, you need to specify a default bus like so:
