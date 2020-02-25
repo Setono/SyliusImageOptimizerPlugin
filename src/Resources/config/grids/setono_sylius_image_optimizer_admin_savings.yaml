@@ -1,0 +1,32 @@
+sylius_grid:
+    grids:
+        setono_sylius_image_optimizer_admin_savings:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%setono_sylius_image_optimizer.model.savings.class%"
+                    repository:
+                        method: createSummedListQueryBuilder
+            sorting:
+                imageResource: asc
+            limits: [1000]
+            fields:
+                imageResource:
+                    type: string
+                    label: setono_sylius_image_optimizer.ui.image_resource
+                originalSize:
+                    type: twig
+                    label: setono_sylius_image_optimizer.ui.original_size
+                    options:
+                        template: "@SetonoSyliusImageOptimizerPlugin/admin/savings/grid/field/bytes.html.twig"
+                optimizedSize:
+                    type: twig
+                    label: setono_sylius_image_optimizer.ui.optimized_size
+                    options:
+                        template: "@SetonoSyliusImageOptimizerPlugin/admin/savings/grid/field/bytes.html.twig"
+                saved:
+                    type: twig
+                    label: setono_sylius_image_optimizer.ui.saved
+                    path: .
+                    options:
+                        template: "@SetonoSyliusImageOptimizerPlugin/admin/savings/grid/field/saved.html.twig"

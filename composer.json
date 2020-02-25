@@ -44,7 +44,7 @@
         "symfony/http-client": "^5.0",
         "symfony/web-profiler-bundle": "^3.4 || ^4.1 || ^5.0",
         "symfony/web-server-bundle": "^3.4 || ^4.1 || ^5.0",
-        "thecodingmachine/phpstan-safe-rule": "^1.0@beta"
+        "thecodingmachine/phpstan-safe-rule": "^1.0"
     },
     "config": {
         "sort-packages": true

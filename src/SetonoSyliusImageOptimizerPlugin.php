@@ -9,10 +9,11 @@ use Setono\SyliusImageOptimizerPlugin\DependencyInjection\Compiler\ResolversComp
 use Setono\SyliusImageOptimizerPlugin\DependencyInjection\Compiler\ValidateFilterSetsPass;
 use Setono\SyliusImageOptimizerPlugin\DependencyInjection\Compiler\ValidateImageResourcesPass;
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
+use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-final class SetonoSyliusImageOptimizerPlugin extends Bundle
+final class SetonoSyliusImageOptimizerPlugin extends AbstractResourceBundle
 {
     use SyliusPluginTrait;
 
@@ -24,5 +25,12 @@ final class SetonoSyliusImageOptimizerPlugin extends Bundle
         $container->addCompilerPass(new ValidateFilterSetsPass());
         $container->addCompilerPass(new ConfigureNgrokAwareImageFileFactoryPass());
         $container->addCompilerPass(new ResolversCompilerPass());
+    }
+
+    public function getSupportedDrivers(): array
+    {
+        return [
+            SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
+        ];
     }
 }

@@ -5,3 +5,14 @@ setono_sylius_image_optimizer_admin_image_optimizer_index:
         _controller: setono_sylius_image_optimizer.controller.action.image_optimizer_index
         _sylius:
             section: admin
+
+setono_sylius_image_optimizer_admin_partial_savings_index:
+    path: /admin/savings
+    methods: [GET]
+    defaults:
+        _controller: setono_sylius_image_optimizer.controller.savings:indexAction
+        _sylius:
+            grid: setono_sylius_image_optimizer_admin_savings
+            section: admin
+            permission: true
+            template: "@SyliusAdmin/Crud/Index/_content.html.twig"

@@ -9,6 +9,7 @@ use Setono\SyliusImageOptimizerPlugin\Model\Savings;
 use Setono\SyliusImageOptimizerPlugin\Model\SavingsInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\Form\Type\DefaultResourceType;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Component\Resource\Factory\Factory;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -28,8 +29,9 @@ final class Configuration implements ConfigurationInterface
         }
 
         $rootNode
-            ->fixXmlConfig('connection')
+            ->fixXmlConfig('image_resource')
             ->children()
+                ->scalarNode('driver')->defaultValue(SyliusResourceBundle::DRIVER_DOCTRINE_ORM)->end()
                 ->arrayNode('image_resources')
                     ->requiresAtLeastOneElement()
                     ->isRequired()
