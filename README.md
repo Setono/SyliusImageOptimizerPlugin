@@ -167,7 +167,7 @@ If you want to test this plugin you can setup [ngrok](https://ngrok.com) to tunn
 [ico-unstable-version]: https://poser.pugx.org/setono/sylius-image-optimizer-plugin/v/unstable
 [ico-license]: https://poser.pugx.org/setono/sylius-image-optimizer-plugin/license
 [ico-github-actions]: https://github.com/Setono/SyliusImageOptimizerPlugin/workflows/build/badge.svg
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusImageOptimizerPlugin.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusImageOptimizerPlugin.svg
 
 [link-packagist]: https://packagist.org/packages/setono/sylius-image-optimizer-plugin
 [link-github-actions]: https://github.com/Setono/SyliusImageOptimizerPlugin/actions
