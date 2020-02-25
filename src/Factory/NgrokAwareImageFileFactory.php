@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusImageOptimizerPlugin\Factory;
 
 use const PHP_URL_PATH;
+use Psr\Log\LoggerInterface;
 use function Safe\parse_url;
 use Setono\SyliusImageOptimizerPlugin\ImageFile\ImageFile;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
@@ -18,10 +19,14 @@ final class NgrokAwareImageFileFactory implements ImageFileFactoryInterface
     /** @var HttpClientInterface */
     private $httpClient;
 
-    public function __construct(ImageFileFactoryInterface $decoratedImageFileFactory, HttpClientInterface $httpClient)
+    /** @var LoggerInterface */
+    private $logger;
+
+    public function __construct(ImageFileFactoryInterface $decoratedImageFileFactory, HttpClientInterface $httpClient, LoggerInterface $logger)
     {
         $this->decoratedImageFileFactory = $decoratedImageFileFactory;
         $this->httpClient = $httpClient;
+        $this->logger = $logger;
     }
 
     public function createFromUrl(string $url): ImageFile
@@ -38,6 +43,8 @@ final class NgrokAwareImageFileFactory implements ImageFileFactoryInterface
 
             return new ImageFile($ngrokUrl . parse_url($url, PHP_URL_PATH));
         } catch (ExceptionInterface $e) {
+            $this->logger->critical('You are running in a dev environment, but not running ngrok which means that a third party service will not be able to reach your images');
+
             // no matter what exception we get from the http client
             // we will just fallback to the decorated image file factory
             return $this->decoratedImageFileFactory->createFromUrl($url);

@@ -29,6 +29,7 @@ final class ConfigureNgrokAwareImageFileFactoryPass implements CompilerPassInter
         $definition = new Definition(NgrokAwareImageFileFactory::class, [
             new Reference('setono_sylius_image_optimizer.factory.ngrok_aware_image_file.inner'),
             new Reference('http_client'),
+            new Reference('logger'),
         ]);
         $definition->setDecoratedService('setono_sylius_image_optimizer.factory.image_file');
 
