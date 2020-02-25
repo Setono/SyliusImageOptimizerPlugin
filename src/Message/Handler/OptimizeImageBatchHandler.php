@@ -35,7 +35,7 @@ final class OptimizeImageBatchHandler implements MessageHandlerInterface
         $images = $q->getResult();
 
         foreach ($images as $image) {
-            $this->commandBus->dispatch(OptimizeImage::createFromImage($image, $message->getFilterSets()));
+            $this->commandBus->dispatch(OptimizeImage::createFromImage($message->getImageResource(), $image, $message->getFilterSets()));
         }
     }
 }

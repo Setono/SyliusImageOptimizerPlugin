@@ -7,6 +7,13 @@ namespace Tests\Setono\SyliusImageOptimizerPlugin\DependencyInjection;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusImageOptimizerPlugin\DependencyInjection\Configuration;
+use Setono\SyliusImageOptimizerPlugin\Doctrine\ORM\SavingsRepository;
+use Setono\SyliusImageOptimizerPlugin\Model\Savings;
+use Setono\SyliusImageOptimizerPlugin\Model\SavingsInterface;
+use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use Sylius\Bundle\ResourceBundle\Form\Type\DefaultResourceType;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
+use Sylius\Component\Resource\Factory\Factory;
 
 final class ConfigurationTest extends TestCase
 {
@@ -62,6 +69,19 @@ final class ConfigurationTest extends TestCase
             'kraken' => [
                 'key' => 'key2',
                 'secret' => 'secret2',
+            ],
+            'driver' => SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
+            'resources' => [
+                'savings' => [
+                    'classes' => [
+                        'model' => Savings::class,
+                        'interface' => SavingsInterface::class,
+                        'controller' => ResourceController::class,
+                        'repository' => SavingsRepository::class,
+                        'form' => DefaultResourceType::class,
+                        'factory' => Factory::class,
+                    ],
+                ],
             ],
         ]);
     }

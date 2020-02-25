@@ -30,6 +30,9 @@ This command requires you to have Composer installed globally, as explained in t
 Then, enable the plugin by adding it to the list of registered plugins/bundles
 in the `config/bundles.php` file of your project:
 
+Make sure you add it before `SyliusGridBundle`, otherwise you'll get
+`You have requested a non-existent parameter "setono_sylius_image_optimizer.model.savings.class".` exception.
+
 ```php
 <?php
 # config/bundles.php
@@ -37,6 +40,7 @@ in the `config/bundles.php` file of your project:
 return [
     // ...
     Setono\SyliusImageOptimizerPlugin\SetonoSyliusImageOptimizerPlugin::class => ['all' => true],
+    Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
     // ...
 ];
 
@@ -65,6 +69,12 @@ setono_sylius_image_optimizer:
         kraken:
             key: "%env(resolve:KRAKEN_API_KEY)%"
             secret: "%env(resolve:KRAKEN_API_SECRET)%"
+```
+
+```yaml
+# config/routes/setono_sylius_image_optimizer.yaml
+setono_sylius_image_optimizer:
+    resource: "@SetonoSyliusImageOptimizerPlugin/Resources/config/routes.yaml"
 ```
 
 ### Step 4: Configure Symfony Messenger

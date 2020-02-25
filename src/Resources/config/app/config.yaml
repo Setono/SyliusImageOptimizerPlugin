@@ -1,3 +1,6 @@
+imports:
+    - { resource: "@SetonoSyliusImageOptimizerPlugin/Resources/config/grids/setono_sylius_image_optimizer_admin_savings.yaml" }
+
 framework:
     messenger:
         buses:

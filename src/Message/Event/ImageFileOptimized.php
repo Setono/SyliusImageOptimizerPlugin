@@ -9,16 +9,25 @@ use Setono\SyliusImageOptimizerPlugin\Optimizer\OptimizationResultInterface;
 
 final class ImageFileOptimized implements EventInterface
 {
+    /** @var string */
+    private $imageResource;
+
     /** @var ImageFile */
     private $imageFile;
 
     /** @var OptimizationResultInterface */
     private $optimizationResult;
 
-    public function __construct(ImageFile $imageFile, OptimizationResultInterface $optimizationResult)
+    public function __construct(string $imageResource, ImageFile $imageFile, OptimizationResultInterface $optimizationResult)
     {
+        $this->imageResource = $imageResource;
         $this->imageFile = $imageFile;
         $this->optimizationResult = $optimizationResult;
+    }
+
+    public function getImageResource(): string
+    {
+        return $this->imageResource;
     }
 
     public function getImageFile(): ImageFile

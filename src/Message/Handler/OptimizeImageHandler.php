@@ -78,11 +78,11 @@ final class OptimizeImageHandler implements MessageHandlerInterface
             $imageFile = $this->imageFileFactory->createFromUrl($url);
 
             $result = $this->optimizer->optimize($imageFile);
-            $this->handleOptimizationResult($result, $imageFile, $message->getPath(), $filterSet);
+            $this->handleOptimizationResult($message->getImageResource(), $result, $imageFile, $message->getPath(), $filterSet);
 
             if ($this->optimizer instanceof WebPOptimizerInterface) {
                 $result = $this->optimizer->optimizeAndConvertToWebP($imageFile);
-                $this->handleOptimizationResult($result, $imageFile, $message->getPath(), $filterSet);
+                $this->handleOptimizationResult($message->getImageResource(), $result, $imageFile, $message->getPath(), $filterSet);
             }
         }
 
@@ -93,6 +93,7 @@ final class OptimizeImageHandler implements MessageHandlerInterface
     }
 
     private function handleOptimizationResult(
+        string $imageResource,
         OptimizationResultInterface $optimizationResult,
         ImageFile $imageFile,
         string $path,
@@ -100,7 +101,7 @@ final class OptimizeImageHandler implements MessageHandlerInterface
     ): void {
         $this->optimizedImageWriter->write($optimizationResult, $path, $filterSet);
 
-        $this->eventBus->dispatch(new ImageFileOptimized($imageFile, $optimizationResult));
+        $this->eventBus->dispatch(new ImageFileOptimized($imageResource, $imageFile, $optimizationResult));
     }
 
     /**

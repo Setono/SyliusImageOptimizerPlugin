@@ -1,0 +1,21 @@
+<doctrine-mapping xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
+                  xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <mapped-superclass name="Setono\SyliusImageOptimizerPlugin\Model\Savings"
+                       table="setono_sylius_image_optimizer__savings">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="imageResource"/>
+        <field name="originalSize" type="integer"/>
+        <field name="optimizedSize" type="integer"/>
+
+        <field name="createdAt" column="created_at" type="datetime">
+            <gedmo:timestampable on="create"/>
+        </field>
+
+        <field name="updatedAt" column="updated_at" type="datetime" nullable="true">
+            <gedmo:timestampable on="update"/>
+        </field>
+    </mapped-superclass>
+</doctrine-mapping>
