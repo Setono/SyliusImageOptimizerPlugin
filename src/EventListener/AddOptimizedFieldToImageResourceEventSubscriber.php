@@ -10,6 +10,9 @@ use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\MappingException;
 use Setono\SyliusImageOptimizerPlugin\Model\OptimizableInterface;
 
+/**
+ * This class will map the 'optimized' field on entities implementing the OptimizableInterface
+ */
 final class AddOptimizedFieldToImageResourceEventSubscriber implements EventSubscriber
 {
     public function getSubscribedEvents(): array

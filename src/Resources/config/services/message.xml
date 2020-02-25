@@ -41,5 +41,13 @@
 
             <tag name="messenger.message_handler"/>
         </service>
+
+        <service id="setono_sylius_image_optimizer.message.handler.log_savings"
+                 class="Setono\SyliusImageOptimizerPlugin\Message\Handler\LogSavingsHandler">
+            <argument type="service" id="setono_sylius_image_optimizer.factory.savings"/>
+            <argument type="service" id="setono_sylius_image_optimizer.repository.savings"/>
+
+            <tag name="messenger.message_handler"/>
+        </service>
     </services>
 </container>
