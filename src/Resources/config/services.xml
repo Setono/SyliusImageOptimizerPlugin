@@ -13,6 +13,5 @@
         <import resource="services/optimizer.xml"/>
         <import resource="services/twig.xml"/>
         <import resource="services/writer.xml"/>
-        <import resource="services/integrations/kraken.xml"/>
     </imports>
 </container>

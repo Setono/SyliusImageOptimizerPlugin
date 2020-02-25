@@ -49,26 +49,20 @@ final class ConfigurationTest extends TestCase
                         'sylius_shop_product_original',
                     ],
                 ],
-                'kraken' => [
-                    'key' => 'key',
-                    'secret' => 'secret',
-                ],
             ],
             [
-                'kraken' => [
-                    'key' => 'key2',
-                    'secret' => 'secret2',
+                'image_resources' => [
+                    'sylius.product_image' => [
+                        'sylius_shop_product_large_thumbnail',
+                    ],
                 ],
             ],
         ], [
             'image_resources' => [
                 'sylius.product_image' => [
                     'sylius_shop_product_original',
+                    'sylius_shop_product_large_thumbnail',
                 ],
-            ],
-            'kraken' => [
-                'key' => 'key2',
-                'secret' => 'secret2',
             ],
             'driver' => SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
             'resources' => [

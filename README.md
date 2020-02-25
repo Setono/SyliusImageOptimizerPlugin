@@ -53,6 +53,19 @@ filter sets that are optimized are the default frontend filter sets for products
 
 This is also the step where you need your API key and secret from [kraken.io](https://kraken.io).
 
+```text
+# .env.local
+KRAKEN_API_KEY=YOUR API KEY
+KRAKEN_API_SECRET=YOUR API SECRET
+```
+
+```yaml
+# config/packages/setono_kraken_io.yaml
+setono_kraken_io:
+    api_key: "%env(resolve:KRAKEN_API_KEY)%"
+    api_secret: "%env(resolve:KRAKEN_API_SECRET)%"
+```
+
 ```yaml
 # config/packages/setono_sylius_image_optimizer.yaml
 imports:

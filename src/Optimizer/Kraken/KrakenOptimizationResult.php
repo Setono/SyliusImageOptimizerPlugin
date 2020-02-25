@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusImageOptimizerPlugin\Optimizer\Kraken;
 
 use function Safe\file_get_contents;
+use Setono\Kraken\Client\Response\WaitResponse;
 use Setono\SyliusImageOptimizerPlugin\Optimizer\OptimizationResultInterface;
 use SplFileInfo;
 use Webimpress\SafeWriter\FileWriter;
@@ -34,9 +35,9 @@ final class KrakenOptimizationResult implements OptimizationResultInterface
         $this->webP = $webP;
     }
 
-    public static function createFromResponse(array $response, bool $webP): self
+    public static function createFromResponse(WaitResponse $response, bool $webP): self
     {
-        return new self($response['original_size'], $response['kraked_size'], $response['kraked_url'], $webP);
+        return new self($response->getOriginalSize(), $response->getKrakedSize(), $response->getKrakedUrl(), $webP);
     }
 
     public function getOriginalSize(): int

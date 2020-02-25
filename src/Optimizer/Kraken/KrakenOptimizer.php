@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace Setono\SyliusImageOptimizerPlugin\Optimizer\Kraken;
 
-use Kraken;
-use RuntimeException;
-use function Safe\sprintf;
+use Setono\Kraken\Client\ClientInterface;
+use Setono\Kraken\Client\Response\WaitResponse;
 use Setono\SyliusImageOptimizerPlugin\ImageFile\ImageFile;
 use Setono\SyliusImageOptimizerPlugin\Optimizer\OptimizationResultInterface;
 use Setono\SyliusImageOptimizerPlugin\Optimizer\WebPOptimizerInterface;
 
 final class KrakenOptimizer implements WebPOptimizerInterface
 {
-    /** @var Kraken */
+    /** @var ClientInterface */
     private $kraken;
 
-    public function __construct(Kraken $kraken)
+    public function __construct(ClientInterface $kraken)
     {
         $this->kraken = $kraken;
     }
@@ -33,25 +32,14 @@ final class KrakenOptimizer implements WebPOptimizerInterface
 
     private function _optimize(ImageFile $imageFile, bool $webP): OptimizationResultInterface
     {
-        $params = [
-            'url' => $imageFile->getUrl(),
-            'wait' => true,
-            'lossy' => true,
-        ];
-
+        $extra = [];
         if ($webP) {
-            $params['webp'] = true;
+            $extra['webp'] = true;
         }
 
-        $data = $this->kraken->url($params);
+        /** @var WaitResponse $response */
+        $response = $this->kraken->url($imageFile->getUrl(), true, true, $extra);
 
-        if (!isset($data['success']) || $data['success'] !== true) {
-            throw new RuntimeException(sprintf(
-                'An error occurred during the optimization of the image file: %s. Error was: %s',
-                $imageFile->getUrl(), $data['error'] ?? 'Empty'
-            ));
-        }
-
-        return KrakenOptimizationResult::createFromResponse($data, $webP);
+        return KrakenOptimizationResult::createFromResponse($response, $webP);
     }
 }

@@ -43,7 +43,7 @@ final class NgrokAwareImageFileFactory implements ImageFileFactoryInterface
 
             return new ImageFile($ngrokUrl . parse_url($url, PHP_URL_PATH));
         } catch (ExceptionInterface $e) {
-            $this->logger->critical('You are running in a dev environment, but not running ngrok which means that a third party service will not be able to reach your images');
+            $this->logger->critical('You are running in a dev environment, but not running ngrok which means that a third party service will not be able to reach your images. run "ngrok http 8000" to fix this');
 
             // no matter what exception we get from the http client
             // we will just fallback to the decorated image file factory

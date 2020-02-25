@@ -8,7 +8,7 @@
 
         <service id="setono_sylius_image_optimizer.optimizer.kraken"
                  class="Setono\SyliusImageOptimizerPlugin\Optimizer\Kraken\KrakenOptimizer">
-            <argument type="service" id="setono_sylius_image_optimizer.client.kraken"/>
+            <argument type="service" id="setono_kraken_io.client"/>
             <argument type="service" id="gaufrette.sylius_image_filesystem"/>
             <argument>%liip_imagine.filter_sets%</argument>
         </service>
