@@ -9,6 +9,3 @@ setono_sylius_image_optimizer:
             - "sylius_shop_product_small_thumbnail"
             - "sylius_shop_product_thumbnail"
             - "sylius_shop_product_large_thumbnail"
-    kraken:
-        key: "%env(resolve:KRAKEN_API_KEY)%"
-        secret: "%env(resolve:KRAKEN_API_SECRET)%"

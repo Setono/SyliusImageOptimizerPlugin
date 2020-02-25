@@ -22,10 +22,6 @@ final class SetonoSyliusImageOptimizerExtensionTest extends AbstractExtensionTes
                     'sylius_shop_product_original',
                 ],
             ],
-            'kraken' => [
-                'key' => 'key',
-                'secret' => 'secret',
-            ],
         ];
     }
 
@@ -41,8 +37,5 @@ final class SetonoSyliusImageOptimizerExtensionTest extends AbstractExtensionTes
                 'sylius_shop_product_original',
             ],
         ]);
-
-        $this->assertContainerBuilderHasParameter('setono_sylius_image_optimizer.kraken.key', 'key');
-        $this->assertContainerBuilderHasParameter('setono_sylius_image_optimizer.kraken.secret', 'secret');
     }
 }

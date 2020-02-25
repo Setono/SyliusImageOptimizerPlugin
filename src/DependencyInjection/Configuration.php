@@ -49,17 +49,6 @@ final class Configuration implements ConfigurationInterface
                         ->scalarPrototype()->end()
                     ->end()
                 ->end()
-                ->arrayNode('kraken')
-                    ->isRequired()
-                    ->children()
-                        ->scalarNode('key')
-                            ->isRequired()
-                        ->end()
-                        ->scalarNode('secret')
-                            ->isRequired()
-                        ->end()
-                    ->end()
-                ->end()
             ->end()
         ;
 
