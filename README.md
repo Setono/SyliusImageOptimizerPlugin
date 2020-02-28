@@ -24,7 +24,6 @@ $ composer require setono/sylius-image-optimizer-plugin
 
 This command requires you to have Composer installed globally, as explained in the [installation chapter](https://getcomposer.org/doc/00-intro.md) of the Composer documentation.
 
-
 ### Step 2: Enable the plugin
 
 Then, enable the plugin by adding it to the list of registered plugins/bundles
@@ -60,16 +59,9 @@ KRAKEN_API_SECRET=YOUR API SECRET
 ```
 
 ```yaml
-# config/packages/setono_kraken_io.yaml
-setono_kraken_io:
-    api_key: "%env(resolve:KRAKEN_API_KEY)%"
-    api_secret: "%env(resolve:KRAKEN_API_SECRET)%"
-```
-
-```yaml
 # config/packages/setono_sylius_image_optimizer.yaml
 imports:
-    - { resource: "@SetonoSyliusPickupPointPlugin/Resources/config/app/config.yaml" }
+    - { resource: "@SetonoSyliusImageOptimizerPlugin/Resources/config/app/config.yaml" }
 
 setono_sylius_image_optimizer:
     image_resources:
@@ -79,15 +71,9 @@ setono_sylius_image_optimizer:
             - sylius_shop_product_small_thumbnail
             - sylius_shop_product_tiny_thumbnail
             - sylius_shop_product_original
-        kraken:
-            key: "%env(resolve:KRAKEN_API_KEY)%"
-            secret: "%env(resolve:KRAKEN_API_SECRET)%"
-```
-
-```yaml
-# config/routes/setono_sylius_image_optimizer.yaml
-setono_sylius_image_optimizer:
-    resource: "@SetonoSyliusImageOptimizerPlugin/Resources/config/routes.yaml"
+    kraken:
+        key: "%env(resolve:KRAKEN_API_KEY)%"
+        secret: "%env(resolve:KRAKEN_API_SECRET)%"
 ```
 
 ### Step 4: Configure Symfony Messenger
