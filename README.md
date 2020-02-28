@@ -69,7 +69,7 @@ setono_kraken_io:
 ```yaml
 # config/packages/setono_sylius_image_optimizer.yaml
 imports:
-    - { resource: "@SetonoSyliusPickupPointPlugin/Resources/config/app/config.yaml" }
+    - { resource: "@SetonoSyliusImageOptimizerPlugin/Resources/config/app/config.yaml" }
 
 setono_sylius_image_optimizer:
     image_resources:
@@ -79,9 +79,6 @@ setono_sylius_image_optimizer:
             - sylius_shop_product_small_thumbnail
             - sylius_shop_product_tiny_thumbnail
             - sylius_shop_product_original
-        kraken:
-            key: "%env(resolve:KRAKEN_API_KEY)%"
-            secret: "%env(resolve:KRAKEN_API_SECRET)%"
 ```
 
 ```yaml
