@@ -27,12 +27,12 @@ final class ConfigureNgrokAwareImageFileFactoryPass implements CompilerPassInter
             return;
         }
 
-        if(!$container->hasDefinition('logger')) {
+        if (!$container->has('logger')) {
             return;
         }
 
-        if(!$container->hasDefinition('http_client')) {
-            throw new ServiceNotFoundException('http_client', null, null, [], 'Run composer require --dev symfony/http-client to fix this');
+        if (!$container->has('http_client')) {
+            throw new ServiceNotFoundException('http_client', null, null, [], 'Symfony HTTP client not installed. Run composer require --dev symfony/http-client to fix this');
         }
 
         $definition = new Definition(NgrokAwareImageFileFactory::class, [
