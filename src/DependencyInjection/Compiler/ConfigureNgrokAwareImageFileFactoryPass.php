@@ -8,6 +8,7 @@ use Setono\SyliusImageOptimizerPlugin\Factory\NgrokAwareImageFileFactory;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
@@ -24,6 +25,14 @@ final class ConfigureNgrokAwareImageFileFactoryPass implements CompilerPassInter
 
         if ($container->getParameter('kernel.environment') !== 'dev' || $container->getParameter('kernel.debug') !== true) {
             return;
+        }
+
+        if(!$container->hasDefinition('logger')) {
+            return;
+        }
+
+        if(!$container->hasDefinition('http_client')) {
+            throw new ServiceNotFoundException('http_client', null, null, [], 'Run composer require --dev symfony/http-client to fix this');
         }
 
         $definition = new Definition(NgrokAwareImageFileFactory::class, [
