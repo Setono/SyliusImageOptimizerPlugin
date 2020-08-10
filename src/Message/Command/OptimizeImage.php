@@ -37,7 +37,7 @@ final class OptimizeImage implements CommandInterface
 
     public static function createFromImage(string $imageResource, ImageInterface $image, array $filterSets): self
     {
-        return new self($imageResource, get_class($image), $image->getId(), $image->getPath(), $filterSets);
+        return new self($imageResource, get_class($image), $image->getId(), (string) $image->getPath(), $filterSets);
     }
 
     public function getImageResource(): string
