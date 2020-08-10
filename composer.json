@@ -14,39 +14,18 @@
         "webimpress/safe-writer": "^2.0"
     },
     "require-dev": {
-        "behat/behat": "^3.4",
-        "behat/mink": "^1.7@dev",
-        "behat/mink-browserkit-driver": "^1.3",
-        "behat/mink-extension": "^2.2",
-        "behat/mink-selenium2-driver": "^1.3",
-        "ergebnis/composer-normalize": "^2.0",
-        "friends-of-behat/page-object-extension": "^0.3",
-        "friends-of-behat/suite-settings-extension": "^1.0",
-        "friends-of-behat/symfony-extension": "^2.0",
-        "friends-of-behat/variadic-extension": "^1.1",
-        "kalessil/production-dependencies-guard": "dev-master",
-        "korbeil/phpstan-generic-rules": "^0.2.2",
         "kriswallsmith/buzz": "^1.0",
-        "lakion/mink-debug-extension": "^1.2.3",
         "matthiasnoback/symfony-config-test": "^4.1",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
         "nyholm/psr7": "^1.2",
-        "phpspec/phpspec": "^6.1",
-        "phpstan/phpstan": "^0.12",
-        "phpstan/phpstan-doctrine": "^0.12",
-        "phpstan/phpstan-strict-rules": "^0.12",
-        "phpstan/phpstan-webmozart-assert": "^0.12",
+        "phpspec/phpspec": "^6.2",
         "phpunit/phpunit": "^8.5",
-        "roave/security-advisories": "dev-master",
-        "sensiolabs/security-checker": "^6.0",
-        "sylius-labs/coding-standard": "^3.1",
+        "setono/code-quality-pack": "^1.2",
         "symfony/browser-kit": "^4.4 || ^5.0",
         "symfony/debug-bundle": "^4.4 || ^5.0",
         "symfony/dotenv": "^4.4 || ^5.0",
         "symfony/http-client": "^5.0",
-        "symfony/web-profiler-bundle": "^4.4 || ^5.0",
-        "symfony/web-server-bundle": "^4.4 || ^5.0",
-        "thecodingmachine/phpstan-safe-rule": "^1.0"
+        "symfony/web-profiler-bundle": "^4.4 || ^5.0"
     },
     "config": {
         "sort-packages": true
@@ -58,11 +37,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Setono\\SyliusImageOptimizerPlugin\\": "src/",
-            "Tests\\Setono\\SyliusImageOptimizerPlugin\\": "tests/"
+            "Setono\\SyliusImageOptimizerPlugin\\": "src/"
         }
     },
     "autoload-dev": {
+        "psr-4": {
+            "Tests\\Setono\\SyliusImageOptimizerPlugin\\": "tests/"
+        },
         "classmap": [
             "tests/Application/Kernel.php"
         ]
