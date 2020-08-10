@@ -14,7 +14,7 @@
         "webimpress/safe-writer": "^2.0"
     },
     "require-dev": {
-        "kriswallsmith/buzz": "^1.0",
+        "kriswallsmith/buzz": "^1.1",
         "matthiasnoback/symfony-config-test": "^4.1",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
         "nyholm/psr7": "^1.2",
