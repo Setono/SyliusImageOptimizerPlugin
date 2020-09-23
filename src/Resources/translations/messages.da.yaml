@@ -1,7 +1,7 @@
 setono_sylius_image_optimizer:
     ui:
-        image_optimizer: Image optimizer
-        image_resource: Image resource
-        original_size: Original size
-        optimized_size: Optimized size
-        saved: Saved
+        image_optimizer: Billedoptimering
+        image_resource: Billedressource
+        original_size: Original størrelse
+        optimized_size: Optimeret størrelse
+        saved: Gemt
