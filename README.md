@@ -16,14 +16,12 @@ It will **both** optimize your jpegs, but also convert them to webp and serve th
 
 ### Step 1: Download the plugin
 
-Open a command console, enter your project directory and execute the following command to download the latest stable version of this plugin:
-
 ```bash
 $ composer require setono/sylius-image-optimizer-plugin
 ```
 
-This command requires you to have Composer installed globally, as explained in the [installation chapter](https://getcomposer.org/doc/00-intro.md) of the Composer documentation.
-
+This will also install the [Kraken.io Bundle](https://github.com/Setono/KrakenIoBundle) which is need for configuring
+the API keys.
 
 ### Step 2: Enable the plugin
 
