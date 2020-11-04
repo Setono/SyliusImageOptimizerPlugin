@@ -62,8 +62,8 @@ KRAKEN_API_SECRET=YOUR API SECRET
 ```yaml
 # config/packages/setono_kraken_io.yaml
 setono_kraken_io:
-    api_key: "%env(resolve:KRAKEN_API_KEY)%"
-    api_secret: "%env(resolve:KRAKEN_API_SECRET)%"
+    api_key: "%env(KRAKEN_API_KEY)%"
+    api_secret: "%env(KRAKEN_API_SECRET)%"
 ```
 
 ```yaml
