@@ -4,7 +4,7 @@
 [![Latest Unstable Version][ico-unstable-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
 [![Build Status][ico-github-actions]][link-github-actions]
-[![Quality Score][ico-code-quality]][link-code-quality]
+[![Code Coverage][ico-code-coverage]][link-code-coverage]
 
 Optimize the images in your Sylius store! Works only with [kraken.io](https://kraken.io) at the moment, but will work with other vendors in the future.
 
@@ -179,8 +179,8 @@ If you want to test this plugin you can setup [ngrok](https://ngrok.com) to tunn
 [ico-unstable-version]: https://poser.pugx.org/setono/sylius-image-optimizer-plugin/v/unstable
 [ico-license]: https://poser.pugx.org/setono/sylius-image-optimizer-plugin/license
 [ico-github-actions]: https://github.com/Setono/SyliusImageOptimizerPlugin/workflows/build/badge.svg
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusImageOptimizerPlugin.svg
+[ico-code-coverage]: https://codecov.io/gh/Setono/SyliusImageOptimizerPlugin/branch/master/graph/badge.svg
 
 [link-packagist]: https://packagist.org/packages/setono/sylius-image-optimizer-plugin
 [link-github-actions]: https://github.com/Setono/SyliusImageOptimizerPlugin/actions
-[link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusImageOptimizerPlugin
+[link-code-coverage]: https://codecov.io/gh/Setono/SyliusImageOptimizerPlugin
