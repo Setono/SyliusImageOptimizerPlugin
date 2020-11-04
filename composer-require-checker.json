@@ -15,6 +15,8 @@
     "string",
     "true",
     "void",
-    "Sylius\\Bundle\\CoreBundle\\Application\\SyliusPluginTrait"
+    "Sylius\\Bundle\\CoreBundle\\Application\\SyliusPluginTrait",
+    "Sylius\\Bundle\\UiBundle\\Menu\\Event\\MenuBuilderEvent",
+    "Sylius\\Component\\Core\\Model\\ImageInterface"
   ]
 }
