@@ -39,7 +39,7 @@
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
         "nyholm/psr7": "^1.2",
         "phpspec/phpspec": "^6.2",
-        "phpunit/phpunit": "^8.5 || ^9.3",
+        "phpunit/phpunit": "^8.5 || ^9.3 || ^9.0",
         "roave/security-advisories": "dev-master",
         "setono/code-quality-pack": "^1.4",
         "sylius/sylius": "~1.7.0",
