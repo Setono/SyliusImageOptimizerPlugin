@@ -72,6 +72,7 @@ imports:
 setono_sylius_image_optimizer:
     image_resources:
         sylius.product_image:
+            # Run "php bin/console debug:config liip_imagine filter_sets" to find the filter sets configured in your app
             - sylius_shop_product_large_thumbnail
             - sylius_shop_product_thumbnail
             - sylius_shop_product_small_thumbnail
