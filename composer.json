@@ -44,6 +44,7 @@
         "setono/code-quality-pack": "^1.4",
         "sylius/sylius": "~1.7.0",
         "symfony/debug-bundle": "^4.4 || ^5.0",
+        "symfony/dotenv": "^4.4 || ^5.0",
         "symfony/http-client": "^5.0",
         "symfony/web-profiler-bundle": "^4.4 || ^5.0"
     },
