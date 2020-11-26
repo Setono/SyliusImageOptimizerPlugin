@@ -17,9 +17,7 @@
         "setono/doctrine-orm-batcher-bundle": "^0.3.1",
         "setono/kraken-io-bundle": "^1.0",
         "setono/kraken-io-php-sdk": "^1.0",
-        "sylius/core": "^1.0",
-        "sylius/resource-bundle": "^1.0",
-        "sylius/ui-bundle": "^1.0",
+        "sylius/resource-bundle": "^1.6",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/console": "^4.4 || ^5.0",
         "symfony/dependency-injection": "^4.4 || ^5.0",
@@ -71,11 +69,11 @@
     },
     "prefer-stable": true,
     "scripts": {
-        "analyse": "vendor/bin/phpstan analyse -c phpstan.neon -l max src",
-        "check-style": "vendor/bin/ecs check src/ tests/",
-        "fix-style": "vendor/bin/ecs check src/ tests/ --fix",
-        "phpspec": "vendor/bin/phpspec run -vvv",
-        "phpunit": "vendor/bin/phpunit",
+        "analyse": "phpstan analyse -c phpstan.neon",
+        "check-style": "ecs check src/ tests/",
+        "fix-style": "ecs check src/ tests/ --fix",
+        "phpspec": "phpspec run",
+        "phpunit": "phpunit",
         "tests": [
             "@phpspec",
             "@phpunit"

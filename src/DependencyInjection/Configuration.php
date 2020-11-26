@@ -6,7 +6,6 @@ namespace Setono\SyliusImageOptimizerPlugin\DependencyInjection;
 
 use Setono\SyliusImageOptimizerPlugin\Doctrine\ORM\SavingsRepository;
 use Setono\SyliusImageOptimizerPlugin\Model\Savings;
-use Setono\SyliusImageOptimizerPlugin\Model\SavingsInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\Form\Type\DefaultResourceType;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
@@ -66,7 +65,6 @@ final class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode('model')->defaultValue(Savings::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('interface')->defaultValue(SavingsInterface::class)->cannotBeEmpty()->end()
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
                                         ->scalarNode('repository')->defaultValue(SavingsRepository::class)->cannotBeEmpty()->end()
                                         ->scalarNode('form')->defaultValue(DefaultResourceType::class)->end()
