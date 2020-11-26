@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 use Setono\SyliusImageOptimizerPlugin\DependencyInjection\Configuration;
 use Setono\SyliusImageOptimizerPlugin\Doctrine\ORM\SavingsRepository;
 use Setono\SyliusImageOptimizerPlugin\Model\Savings;
-use Setono\SyliusImageOptimizerPlugin\Model\SavingsInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\Form\Type\DefaultResourceType;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
