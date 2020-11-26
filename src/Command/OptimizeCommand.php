@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusImageOptimizerPlugin\Command;
 
-use Setono\Kraken\Client\ClientInterface;
+use Psr\Container\ContainerInterface;
+use Setono\Kraken\Client\Client;
 use Setono\Kraken\Exception\RequestFailedException;
 use Setono\SyliusImageOptimizerPlugin\Message\Command\OptimizeConfiguredImageResources;
 use Symfony\Component\Console\Command\Command;
@@ -12,26 +13,35 @@ use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
-final class OptimizeCommand extends Command
+final class OptimizeCommand extends Command implements ServiceSubscriberInterface
 {
     use LockableTrait;
 
     /** @var string */
     protected static $defaultName = 'setono:sylius-image-optimizer:optimize';
 
-    /** @var ClientInterface */
-    private $client;
+    /** @var ContainerInterface */
+    private $locator;
 
     /** @var MessageBusInterface */
     private $commandBus;
 
-    public function __construct(ClientInterface $client, MessageBusInterface $commandBus)
+    public function __construct(ContainerInterface $locator, MessageBusInterface $commandBus)
     {
         parent::__construct();
 
-        $this->client = $client;
+        $this->locator = $locator;
         $this->commandBus = $commandBus;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public static function getSubscribedServices(): array
+    {
+        return ['setono_kraken_io.client' => Client::class];
     }
 
     protected function configure(): void
@@ -47,8 +57,10 @@ final class OptimizeCommand extends Command
             return 0;
         }
 
+        $client = $this->locator->get('setono_kraken_io.client');
+
         try {
-            $this->client->status();
+            $client->status();
         } catch (RequestFailedException $e) {
             $output->writeln('<error>An error occurred when trying to ping the Kraken API:</error>');
             $output->writeln('<error>- ' . $e->getMessage() . '</error>');

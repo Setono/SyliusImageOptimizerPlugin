@@ -6,7 +6,9 @@
     <services>
         <service id="setono_sylius_image_optimizer.command.optimize_command"
                  class="Setono\SyliusImageOptimizerPlugin\Command\OptimizeCommand">
-            <argument type="service" id="setono_kraken_io.client"/>
+            <argument type="service_locator">
+                <argument key="setono_kraken_io.client" type="service" id="setono_kraken_io.client" />
+            </argument>
             <argument type="service" id="setono_sylius_image_optimizer.command_bus"/>
             <tag name="console.command"/>
         </service>
