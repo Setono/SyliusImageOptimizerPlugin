@@ -1,0 +1,127 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\CacheManager\\\\CacheManager\\:\\:getBrowserPath\\(\\) has parameter \\$runtimeConfig with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/CacheManager/CacheManager.php
+
+		-
+			message: "#^Property Setono\\\\SyliusImageOptimizerPlugin\\\\Command\\\\ConfiguredFilterSetsCommand\\:\\:\\$filterSets type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/ConfiguredFilterSetsCommand.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\Command\\\\ConfiguredFilterSetsCommand\\:\\:__construct\\(\\) has parameter \\$filterSets with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/ConfiguredFilterSetsCommand.php
+
+		-
+			message: "#^Property Setono\\\\SyliusImageOptimizerPlugin\\\\Command\\\\OptimizableResourcesCommand\\:\\:\\$resources type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/OptimizableResourcesCommand.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\Command\\\\OptimizableResourcesCommand\\:\\:__construct\\(\\) has parameter \\$resources with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Command/OptimizableResourcesCommand.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition\\:\\:fixXmlConfig\\(\\)\\.$#"
+			count: 1
+			path: src/DependencyInjection/Configuration.php
+
+		-
+			message: "#^Anonymous function should have native return typehint \"bool\"\\.$#"
+			count: 1
+			path: src/DependencyInjection/Configuration.php
+
+		-
+			message: "#^Parameter \\#1 \\$node of method Setono\\\\SyliusImageOptimizerPlugin\\\\DependencyInjection\\\\Configuration\\:\\:addResourcesSection\\(\\) expects Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\ArrayNodeDefinition, Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition given\\.$#"
+			count: 1
+			path: src/DependencyInjection/Configuration.php
+
+		-
+			message: "#^Cannot call method arrayNode\\(\\) on Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeParentInterface\\|null\\.$#"
+			count: 1
+			path: src/DependencyInjection/Configuration.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\DependencyInjection\\\\SetonoSyliusImageOptimizerExtension\\:\\:load\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/DependencyInjection/SetonoSyliusImageOptimizerExtension.php
+
+		-
+			message: "#^Parameter \\#1 \\$configuration of method Symfony\\\\Component\\\\DependencyInjection\\\\Extension\\\\Extension\\:\\:processConfiguration\\(\\) expects Symfony\\\\Component\\\\Config\\\\Definition\\\\ConfigurationInterface, Symfony\\\\Component\\\\Config\\\\Definition\\\\ConfigurationInterface\\|null given\\.$#"
+			count: 1
+			path: src/DependencyInjection/SetonoSyliusImageOptimizerExtension.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\Menu\\\\AdminMenuListener\\:\\:addChild\\(\\) has parameter \\$item with no value type specified in iterable type Knp\\\\Menu\\\\ItemInterface\\.$#"
+			count: 1
+			path: src/Menu/AdminMenuListener.php
+
+		-
+			message: "#^Property Setono\\\\SyliusImageOptimizerPlugin\\\\Message\\\\Command\\\\OptimizeImage\\:\\:\\$filterSets type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Message/Command/OptimizeImage.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\Message\\\\Command\\\\OptimizeImage\\:\\:__construct\\(\\) has parameter \\$filterSets with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Message/Command/OptimizeImage.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\Message\\\\Command\\\\OptimizeImage\\:\\:createFromImage\\(\\) has parameter \\$filterSets with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Message/Command/OptimizeImage.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\Message\\\\Command\\\\OptimizeImage\\:\\:getFilterSets\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Message/Command/OptimizeImage.php
+
+		-
+			message: "#^Property Setono\\\\SyliusImageOptimizerPlugin\\\\Message\\\\Command\\\\OptimizeImageBatch\\:\\:\\$filterSets type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Message/Command/OptimizeImageBatch.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\Message\\\\Command\\\\OptimizeImageBatch\\:\\:__construct\\(\\) has parameter \\$filterSets with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Message/Command/OptimizeImageBatch.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\Message\\\\Command\\\\OptimizeImageBatch\\:\\:getFilterSets\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Message/Command/OptimizeImageBatch.php
+
+		-
+			message: "#^Property Setono\\\\SyliusImageOptimizerPlugin\\\\Message\\\\Command\\\\OptimizeImageResource\\:\\:\\$filterSets type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Message/Command/OptimizeImageResource.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\Message\\\\Command\\\\OptimizeImageResource\\:\\:__construct\\(\\) has parameter \\$filterSets with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Message/Command/OptimizeImageResource.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\Message\\\\Command\\\\OptimizeImageResource\\:\\:getFilterSets\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Message/Command/OptimizeImageResource.php
+
+		-
+			message: "#^Property Setono\\\\SyliusImageOptimizerPlugin\\\\Message\\\\Handler\\\\OptimizeConfiguredImageResourcesHandler\\:\\:\\$imageResourcesConfig type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Message/Handler/OptimizeConfiguredImageResourcesHandler.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\Message\\\\Handler\\\\OptimizeConfiguredImageResourcesHandler\\:\\:__construct\\(\\) has parameter \\$imageResourcesConfig with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Message/Handler/OptimizeConfiguredImageResourcesHandler.php
+
+		-
+			message: "#^Method Setono\\\\SyliusImageOptimizerPlugin\\\\SetonoSyliusImageOptimizerPlugin\\:\\:getSupportedDrivers\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/SetonoSyliusImageOptimizerPlugin.php
+
