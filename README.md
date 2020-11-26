@@ -100,8 +100,10 @@ framework:
 
 #### Step 4.1: Using asynchronous transport (optional, but recommended)
                
-All commands in this plugin will extend the [CommandInterface](src/Message/Command/CommandInterface.php).
-Therefore you can route all commands easily by adding this to your [Messenger config](https://symfony.com/doc/current/messenger.html#routing-messages-to-a-transport):
+All commands in this plugin will extend the [CommandInterface](src/Message/Command/CommandInterface.php) and all events
+will extend the [EventInterface](src/Message/Event/EventInterface.php).
+
+Therefore, you can route all commands and events easily by adding this to your [Messenger config](https://symfony.com/doc/current/messenger.html#routing-messages-to-a-transport):
 
 ```yaml
 # config/packages/messenger.yaml
@@ -111,6 +113,7 @@ framework:
            # Route all command messages to the async transport
            # This presumes that you have already set up an 'async' transport
            'Setono\SyliusImageOptimizerPlugin\Message\Command\CommandInterface': async
+           'Setono\SyliusImageOptimizerPlugin\Message\Event\EventInterface': async
 ```
 
 ### Step 5: Extend image resources
