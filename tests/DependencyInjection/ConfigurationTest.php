@@ -69,7 +69,6 @@ final class ConfigurationTest extends TestCase
                 'savings' => [
                     'classes' => [
                         'model' => Savings::class,
-                        'interface' => SavingsInterface::class,
                         'controller' => ResourceController::class,
                         'repository' => SavingsRepository::class,
                         'form' => DefaultResourceType::class,
