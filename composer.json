@@ -24,6 +24,7 @@
         "symfony/event-dispatcher": "^4.4 || ^5.0",
         "symfony/http-client-contracts": "^2.3",
         "symfony/http-foundation": "^4.4 || ^5.0",
+        "symfony/lock": "^4.4 || ^5.0",
         "symfony/messenger": "^4.4 || ^5.0",
         "symfony/mime": "^5.0",
         "symfony/routing": "^4.4 || ^5.0",
