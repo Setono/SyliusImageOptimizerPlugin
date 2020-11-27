@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusImageOptimizerPlugin\Command;
 
 use Psr\Container\ContainerInterface;
-use Setono\Kraken\Client\Client;
+use Setono\Kraken\Client\ClientInterface;
 use Setono\Kraken\Exception\RequestFailedException;
 use Setono\SyliusImageOptimizerPlugin\Message\Command\OptimizeConfiguredImageResources;
 use Symfony\Component\Console\Command\Command;
@@ -41,7 +41,7 @@ final class OptimizeCommand extends Command implements ServiceSubscriberInterfac
      */
     public static function getSubscribedServices(): array
     {
-        return ['setono_kraken_io.client' => Client::class];
+        return ['setono_kraken_io.client' => ClientInterface::class];
     }
 
     protected function configure(): void
