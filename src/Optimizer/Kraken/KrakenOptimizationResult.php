@@ -7,12 +7,11 @@ namespace Setono\SyliusImageOptimizerPlugin\Optimizer\Kraken;
 use function Safe\file_get_contents;
 use Setono\Kraken\Client\Response\WaitResponse;
 use Setono\SyliusImageOptimizerPlugin\Optimizer\OptimizationResultInterface;
-use SplFileInfo;
 use Webimpress\SafeWriter\FileWriter;
 
 final class KrakenOptimizationResult implements OptimizationResultInterface
 {
-    /** @var SplFileInfo */
+    /** @var string */
     private $file;
 
     /** @var int */
@@ -55,7 +54,7 @@ final class KrakenOptimizationResult implements OptimizationResultInterface
         return $this->getOriginalSize() - $this->getOptimizedSize();
     }
 
-    public function getFile(): SplFileInfo
+    public function getFile(): string
     {
         if (null === $this->file) {
             do {
@@ -64,7 +63,7 @@ final class KrakenOptimizationResult implements OptimizationResultInterface
 
             FileWriter::writeFile($filename, file_get_contents($this->url));
 
-            $this->file = new SplFileInfo($filename);
+            $this->file = $filename;
         }
 
         return $this->file;

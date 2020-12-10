@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusImageOptimizerPlugin\Optimizer;
 
-use SplFileInfo;
-
 interface OptimizationResultInterface
 {
     /**
@@ -20,7 +18,10 @@ interface OptimizationResultInterface
 
     public function getSavedBytes(): int;
 
-    public function getFile(): SplFileInfo;
+    /**
+     * Returns the absolute path to the file
+     */
+    public function getFile(): string;
 
     /**
      * @return bool Returns true if the file was converted in the optimization process

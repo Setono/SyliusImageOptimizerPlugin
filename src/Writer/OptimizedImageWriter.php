@@ -36,22 +36,21 @@ final class OptimizedImageWriter implements OptimizedImageWriterInterface
 
         $optimizedImageFile = $optimizationResult->getFile();
 
-        $realPath = $optimizedImageFile->getRealPath();
-        if (false === $realPath) {
-            throw new InvalidArgumentException(sprintf('The file %s does not exist', $optimizedImageFile->getPathname()));
+        if (!file_exists($optimizedImageFile)) {
+            throw new InvalidArgumentException(sprintf('The file %s does not exist', $optimizedImageFile));
         }
 
-        $mimeType = $this->mimeTypes->guessMimeType($realPath);
+        $mimeType = $this->mimeTypes->guessMimeType($optimizedImageFile);
         if (null === $mimeType) {
-            throw new RuntimeException(sprintf('Could not deduce mime type from file %s', $realPath));
+            throw new RuntimeException(sprintf('Could not deduce mime type from file %s', $optimizedImageFile));
         }
 
-        $binary = new FileBinary($realPath, $mimeType);
+        $binary = new FileBinary($optimizedImageFile, $mimeType);
 
         $this->cacheManager->store($binary, $path, $filter);
 
         if ($removeSource) {
-            unlink($realPath);
+            unlink($optimizedImageFile);
         }
     }
 }
