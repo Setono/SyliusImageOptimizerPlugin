@@ -9,6 +9,7 @@ use Liip\ImagineBundle\Imagine\Cache\SignerInterface;
 use Liip\ImagineBundle\Imagine\Filter\FilterConfiguration;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 final class CacheManager extends BaseCacheManager
@@ -29,7 +30,7 @@ final class CacheManager extends BaseCacheManager
         $this->requestStack = $requestStack;
     }
 
-    public function getBrowserPath($path, $filter, array $runtimeConfig = [], $resolver = null): string
+    public function getBrowserPath($path, $filter, array $runtimeConfig = [], $resolver = null, $referenceType = UrlGeneratorInterface::ABSOLUTE_URL): string
     {
         if ($this->clientAcceptsWebP()) {
             $webPPath = self::getWebPPath($path);
