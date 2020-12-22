@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Liip\ImagineBundle\Service\FilterService;
+use Psr\Log\LoggerInterface;
 use function Safe\sprintf;
 use Setono\SyliusImageOptimizerPlugin\Factory\ImageFileFactoryInterface;
 use Setono\SyliusImageOptimizerPlugin\ImageFile\ImageFile;
@@ -46,13 +47,17 @@ final class OptimizeImageHandler implements MessageHandlerInterface
     /** @var MessageBusInterface */
     private $eventBus;
 
+    /** @var LoggerInterface */
+    private $logger;
+
     public function __construct(
         OptimizerInterface $optimizer,
         ManagerRegistry $managerRegistry,
         FilterService $filterService,
         OptimizedImageWriterInterface $optimizedImageWriter,
         ImageFileFactoryInterface $imageFileFactory,
-        MessageBusInterface $eventBus
+        MessageBusInterface $eventBus,
+        LoggerInterface $logger
     ) {
         $this->optimizer = $optimizer;
         $this->managerRegistry = $managerRegistry;
@@ -60,6 +65,7 @@ final class OptimizeImageHandler implements MessageHandlerInterface
         $this->optimizedImageWriter = $optimizedImageWriter;
         $this->imageFileFactory = $imageFileFactory;
         $this->eventBus = $eventBus;
+        $this->logger = $logger;
     }
 
     public function __invoke(OptimizeImage $message): void
@@ -73,23 +79,46 @@ final class OptimizeImageHandler implements MessageHandlerInterface
             ));
         }
 
+        $exceptions = [];
+
         foreach ($message->getFilterSets() as $filterSet) {
-            $url = $this->filterService->getUrlOfFilteredImage($message->getPath(), $filterSet);
-            $imageFile = $this->imageFileFactory->createFromUrl($url);
+            try {
+                $url = $this->filterService->getUrlOfFilteredImage($message->getPath(), $filterSet);
+                $imageFile = $this->imageFileFactory->createFromUrl($url);
 
-            $result = $this->optimizer->optimize($imageFile);
-            $this->handleOptimizationResult($message->getImageResource(), $result, $imageFile, $message->getPath(), $filterSet);
+                $result = $this->optimizer->optimize($imageFile);
+                $this->handleOptimizationResult(
+                    $message->getImageResource(), $result, $imageFile, $message->getPath(), $filterSet
+                );
 
-            if ($this->optimizer instanceof WebPOptimizerInterface) {
-                $result = $this->optimizer->optimizeAndConvertToWebP($imageFile);
-                $this->handleOptimizationResult($message->getImageResource(), $result, $imageFile, $message->getPath(), $filterSet);
+                if ($this->optimizer instanceof WebPOptimizerInterface) {
+                    $result = $this->optimizer->optimizeAndConvertToWebP($imageFile);
+                    $this->handleOptimizationResult(
+                        $message->getImageResource(), $result, $imageFile, $message->getPath(), $filterSet
+                    );
+                }
+            } catch (\Throwable $e) {
+                $exceptions[] = $e;
             }
         }
 
+        // todo notice we are catching exceptions above meaning that an image can fail in optimization, but still be marked as optimized
+        // todo this is done as an easy fix right now to solve the problem where a command keeps trying to optimize an image that fails
         $image->setOptimized();
 
         $manager = $this->getManager($message->getClass());
         $manager->flush();
+
+        if (count($exceptions) > 0) {
+            $errors = array_map(static function (\Throwable $e): string {
+                return $e->getMessage();
+            }, $exceptions);
+
+            $this->logger->error(sprintf(
+                "An error occurred during optimization of image %s with id %s. Errors:\n%s",
+                $message->getClass(), $message->getId(), '- ' . implode("\n- ", $errors)
+            ));
+        }
     }
 
     private function handleOptimizationResult(

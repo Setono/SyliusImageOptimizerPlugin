@@ -38,6 +38,7 @@
             <argument type="service" id="setono_sylius_image_optimizer.writer.optimized_image"/>
             <argument type="service" id="setono_sylius_image_optimizer.factory.image_file"/>
             <argument type="service" id="setono_sylius_image_optimizer.event_bus"/>
+            <argument type="service" id="logger"/>
 
             <tag name="messenger.message_handler"/>
         </service>
