@@ -4,7 +4,7 @@
     "description": "Sylius plugin that optimizes your images",
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": ">=7.3",
         "ext-mbstring": "*",
         "doctrine/common": "^2.13 || ^3.0",
         "doctrine/event-manager": "^1.1",
